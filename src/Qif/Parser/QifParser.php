@@ -40,7 +40,7 @@ class QifParser
     }
 
     /**
-     * Parsing elements ending from separator in string format
+     * Parsing elements with element separator
      * 
      * @return void
      */
@@ -52,20 +52,17 @@ class QifParser
     }
 
     /**
-     * Get first transaction index needed for get all next transactions
+     * Get first transaction index needed for fetching all next transactions elements
      * 
-     * @return int First transaction index
+     * @return int First element transaction index
      */
     private function getFirstTransactionIndex(): int {
-        $indexTransactionBegin = 0;
-
         foreach($this->elements as $index => $element) {
             if (str_contains($element, self::FIRST_TRANSACTION_RULE)) {
-                $indexTransactionBegin = $index;
-                break;
+                return $index;
             }
         }
 
-        return $indexTransactionBegin;
+        return 0;
     }
 }
