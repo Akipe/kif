@@ -1,13 +1,9 @@
 <?php
 
-include_once "../src/QifGeneratorHTML.php";
-include_once "../src/QifParser.php";
+require_once __DIR__ . "/../src/Qif/Qif.php";
 
 $qifContent = file_get_contents("./input_test.qif");
 
-$parser = new QifParser($qifContent);
-$listTransactions = $parser->getTransactions();
-$generator = new QifGeneratorHTML($listTransactions);
-$output = $generator->generate();
+$qif = new Qif($qifContent);
 
-file_put_contents("./output_test.html", $output);
+file_put_contents("./output_test.html", $qif->getHtml());

@@ -1,6 +1,6 @@
 <?php
 
-class Transaction
+class QifTransaction
 {
     function __construct(
         public readonly string $date,
