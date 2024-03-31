@@ -1,5 +1,5 @@
 {
-    "name": "Akipe/kif",
+    "name": "akipe/kif",
     "license": "GPLv3",
     "autoload": {
         "psr-4": {
