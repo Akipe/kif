@@ -1,7 +1,8 @@
 <?php
 
-require_once __DIR__ . "/../Element/QifTransaction.php";
-require_once __DIR__ . "/../../Html/HtmlGenerator.php";
+namespace Akipe\Kif\Generator;
+
+use Akipe\Kif\Html\HtmlGenerator;
 
 class QifGeneratorHTML 
 {

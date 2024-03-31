@@ -1,5 +1,9 @@
 <?php
 
+namespace Akipe\Kif\Parser;
+
+use Akipe\Kif\Element\QifTransaction;
+
 class QifElementParser
 {
     public const ELEMENT_SEPARATOR = "^";
@@ -71,6 +75,7 @@ class QifElementParser
         string $regexRule
     ): string {
         $attributsFound = preg_grep($regexRule, $attributes);
+
         return substr(array_shift($attributsFound), 1);
     }
 }

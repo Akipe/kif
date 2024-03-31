@@ -1,9 +1,11 @@
 <?php
 
-require_once __DIR__ . "/../src/Qif/Qif.php";
+require __DIR__ . '/../vendor/autoload.php';
 
-$qifContent = file_get_contents("./input_test.qif");
+use Akipe\Kif\Kif;
 
-$qif = new Qif($qifContent);
+$qifContent = file_get_contents(__DIR__ . "/input_test.qif");
 
-file_put_contents("./output_test.html", $qif->getHtml());
+$qif = new Kif($qifContent);
+
+file_put_contents(__DIR__ . "/output_test.html", $qif->getHtml());

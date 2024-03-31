@@ -1,0 +1,16 @@
+{
+    "name": "Akipe/kif",
+    "license": "GPLv3",
+    "autoload": {
+        "psr-4": {
+            "Akipe\\Kif\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Julien Milletre Akipe",
+            "email": "code.julien@milletre.fr"
+        }
+    ],
+    "require": {}
+}

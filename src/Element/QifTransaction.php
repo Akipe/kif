@@ -1,5 +1,7 @@
 <?php
 
+namespace Akipe\Kif\Element;
+
 class QifTransaction
 {
     function __construct(

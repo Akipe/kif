@@ -1,5 +1,7 @@
 <?php
 
+namespace Akipe\Kif\Html;
+
 class HtmlGenerator
 {
     private string $style;

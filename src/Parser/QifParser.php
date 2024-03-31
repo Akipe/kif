@@ -1,7 +1,9 @@
 <?php
 
-include_once __DIR__ . "/../Element/QifTransaction.php";
-include_once __DIR__ . "/QifElementParser.php";
+namespace Akipe\Kif\Parser;
+
+use Akipe\Kif\Element\QifTransaction;
+use Akipe\Kif\Parser\QifElementParser;
 
 class QifParser
 {

@@ -1,9 +1,11 @@
 <?php
 
-require_once __DIR__ . "/Parser/QifParser.php";
-require_once __DIR__ . "/Generator/QifGeneratorHTML.php";
+namespace Akipe\Kif;
 
-class Qif
+use Akipe\Kif\Parser\QifParser;
+use Akipe\Kif\Generator\QifGeneratorHTML;
+
+class Kif
 {
     private QifParser $parser;
     private QifGeneratorHtml $generator;
