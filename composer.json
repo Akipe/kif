@@ -12,5 +12,7 @@
             "email": "code.julien@milletre.fr"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    }
 }
