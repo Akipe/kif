@@ -33,30 +33,38 @@ class HtmlGenerator
         $this->tabHeader .= "</tr>". PHP_EOL;
     }
 
+    /**
+     * 
+     * @param array<array{classCss: string, data: string}> $elements 
+     * @return void 
+     */
     public function addTabLine(... $elements): void {
         $this->tabContent .= "<tr>". PHP_EOL;
 
         foreach ($elements as $element) {
-            $this->tabContent .= "<th>". $element . "</th>". PHP_EOL;
+            $this->tabContent .= "<th class=\"". $element["cssClass"] ."\">". $element["data"] . "</th>". PHP_EOL;
         }
 
         $this->tabContent .= "</tr>". PHP_EOL;
     }
 
-    public function generateTabPageTemplate(): string {
+    public function generateCssStyle(): string {
+        return $this->style;
+    }
+
+    public function generateTabPageTemplate(string $cssFilePath): string {
         return "<!doctype html>
         <html>
             <head>
-                <style>
-                    ". $this->style . "
-                </style>
+                <link rel=\"stylesheet\" type=\"text/css\" href=\"" . $cssFilePath . "\" />
             </head>
             <body>
-                <table>
-                    <thead>
+                <h1>Relevé de compte</h1>
+                <table class=\"releve-compte-tableau\">
+                    <thead class=\"releve-compte-tableau-titre\">
                         ". $this->tabHeader . "
                     </thead>
-                    <tbody>
+                    <tbody class=\"releve-compte-tableau-contenu\">
                         ". $this->tabContent . "
                     </tbody>
                 </table>

@@ -12,6 +12,7 @@ class QifElementParser
     public const RULE_ATTRIBUTE_AMOUNT = '/^T/i';
     public const RULE_ATTRIBUTE_RECIPIENT = '/^P/i';
     public const RULE_ATTRIBUTE_CATEGORY = '/^L/i';
+    public const VALUE_CATEGORY_EMPTY = "(null)";
 
     /** @var string[] */
     private array $lines;
@@ -29,11 +30,11 @@ class QifElementParser
      */
     public function getElement(): QifTransaction {
         return new QifTransaction(
-            $this->getDateAttribute($this->lines),
-            $this->getNoteAttribute($this->lines),
-            $this->getAmountAttribute($this->lines),
-            $this->getRecipientAttribute($this->lines),
-            $this->getCategoryAttribute($this->lines),
+            $this->getDateAttribute(),
+            $this->getNoteAttribute(),
+            $this->getAmountAttribute(),
+            $this->getRecipientAttribute(),
+            $this->getCategoryAttribute(),
         );
     }
 
@@ -52,24 +53,28 @@ class QifElementParser
         $this->lines = array_map(function ($line) { return trim($line); }, $lines);
     }
 
-    private function getDateAttribute(array $attributes): string {
-        return $this->getGenericAttribute($attributes, self::RULE_ATTRIBUTE_DATE);
+    private function getDateAttribute(): string {
+        return $this->getGenericAttribute($this->lines, self::RULE_ATTRIBUTE_DATE);
     }
 
-    private function getNoteAttribute(array $attributes): string {
-        return $this->getGenericAttribute($attributes, self::RULE_ATTRIBUTE_NOTE);
+    private function getNoteAttribute(): string {
+        return $this->getGenericAttribute($this->lines, self::RULE_ATTRIBUTE_NOTE);
     }
 
-    private function getAmountAttribute(array $attributes): string {
-        return $this->getGenericAttribute($attributes, self::RULE_ATTRIBUTE_AMOUNT);
+    private function getAmountAttribute(): float {
+        return $this->castMoney($this->getGenericAttribute($this->lines, self::RULE_ATTRIBUTE_AMOUNT));
     }
 
-    private function getRecipientAttribute(array $attributes): string {
-        return $this->getGenericAttribute($attributes, self::RULE_ATTRIBUTE_RECIPIENT);
+    private function getRecipientAttribute(): string {
+        return $this->getGenericAttribute($this->lines, self::RULE_ATTRIBUTE_RECIPIENT);
     }
 
-    private function getCategoryAttribute(array $attributes): string {
-        return $this->getGenericAttribute($attributes, self::RULE_ATTRIBUTE_CATEGORY);
+    private function getCategoryAttribute(): string {
+        $category = $this->getGenericAttribute($this->lines, self::RULE_ATTRIBUTE_CATEGORY);
+
+        if ($category == self::VALUE_CATEGORY_EMPTY) return "";
+
+        return $category;
     }
 
     private function getGenericAttribute(
@@ -78,6 +83,10 @@ class QifElementParser
     ): string {
         $attributsFound = preg_grep($regexRule, $attributes);
 
-        return substr(array_shift($attributsFound), 1);
+        return strtolower(substr(array_shift($attributsFound), 1));
+    }
+
+    private function castMoney(string $money): float {
+        return (float) str_replace(',', ".", $money);
     }
 }

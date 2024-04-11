@@ -6,16 +6,6 @@ use Akipe\Kif\Html\HtmlGenerator;
 
 class QifGeneratorHTML 
 {
-    public const style = "
-        td {
-            border: 1px solid black;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-    ";
-
     private HtmlGenerator $generator;
 
     function __construct(
@@ -24,26 +14,74 @@ class QifGeneratorHTML
         $this->generator = new HtmlGenerator();
     }
 
-    public function generate(): string {
-        $this->generator->setStyle(self::style);
+    /**
+     * 
+     * @return array{html: string, css: string} 
+     */
+    public function generate(string $cssFilePath): array {
+        $output = [];
+
+        $this->generator->setStyle(
+            file_get_contents(__DIR__ . "/style.css")
+        );
         $this->generator->setTabHeader(
             "Date",
             "Note",
-            "Montant",
             "Bénéficiaire",
             "Catégorie",
+            "Débit",
+            "Crédit",
         );
 
+        
         foreach ($this->transactions as $transaction) {
+            if ($transaction->amount < 0) {
+                $debit = [
+                    "cssClass" => "debit",
+                    "data" => number_format($transaction->amount, 2, ',', ' '),
+                ];
+                $credit = [
+                    "cssClass" => "credit",
+                    "data" => '',
+                ];
+            } else {
+                $debit = [
+                    "cssClass" => "debit",
+                    "data" => '',
+                ];
+                $credit = [
+                    "cssClass" => "credit",
+                    "data" => number_format($transaction->amount, 2, ',', ' '),
+                ];
+            }
+
+
+
             $this->generator->addTabLine(
-                $transaction->date,
-                $transaction->note,
-                $transaction->amount,
-                $transaction->recipient,
-                $transaction->category,
+                [
+                    "cssClass" => "date",
+                    "data" => ucfirst($transaction->date),
+                ],
+                [
+                    "cssClass" => "note",
+                    "data" => ucwords($transaction->note),
+                ],
+                [
+                    "cssClass" => "recipient",
+                    "data" => ucwords($transaction->recipient),
+                ],
+                [
+                    "cssClass" => "category",
+                    "data" => ucfirst($transaction->category),
+                ],
+                $debit,
+                $credit,
             );
         };
 
-        return $this->generator->generateTabPageTemplate();
+        return [
+            "css" => $this->generator->generateCssStyle(),
+            "html" => $this->generator->generateTabPageTemplate($cssFilePath),
+        ];
     }
 }

@@ -19,7 +19,12 @@ class Kif
         );
     }
 
-    function getHtml(): string {
-        return $this->generator->generate();
+    /**
+     * 
+     * @param string $cssFilePath 
+     * @return array{html: string, css: string} 
+     */
+    function getHtml(string $cssFilePath): array {
+        return $this->generator->generate($cssFilePath);
     }
 }

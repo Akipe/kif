@@ -1,0 +1,39 @@
+
+.releve-compte-tableau {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 1rem;
+}
+
+.releve-compte-tableau thead {
+    font-size: 1.2rem;
+}
+
+.releve-compte-tableau tr {
+    border-bottom: 1px solid rgb(192, 192, 192);
+}
+
+.releve-compte-tableau-contenu th {
+    font-weight: normal;
+    padding: 2px 5px;
+}
+
+.releve-compte-tableau-contenu tr:nth-child(odd) {
+    color: black !important;;
+    print-color-adjust: exact;
+}
+
+.releve-compte-tableau-contenu tr:nth-child(even) {
+    color: rgb(110, 110, 110) !important;;
+    print-color-adjust: exact;
+}
+
+.releve-compte-tableau .note, .releve-compte-tableau .recipient, .releve-compte-tableau .category {
+    text-align: left;
+}
+
+.releve-compte-tableau .debit, .releve-compte-tableau .credit {
+    text-align: right;
+}
