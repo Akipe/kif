@@ -38,6 +38,11 @@ class QifParser
                 ->getElement();
         }
 
+        usort(
+            $listTransactions,
+            fn($a, $b) => $a->date < $b->date ? -1 : 1
+        );
+
         return $listTransactions;
     }
 
