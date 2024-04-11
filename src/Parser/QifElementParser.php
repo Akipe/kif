@@ -44,10 +44,12 @@ class QifElementParser
      * @return void 
      */
     private function setLinesElement(string $element): void {
-        $this->lines = explode(
+        $lines = explode(
             PHP_EOL,
             $element,
         );
+
+        $this->lines = array_map(function ($line) { return trim($line); }, $lines);
     }
 
     private function getDateAttribute(array $attributes): string {

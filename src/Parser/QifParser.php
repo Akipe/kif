@@ -48,7 +48,7 @@ class QifParser
      */
     private function setElements(): void {
         $this->elements = array_filter(
-            explode(QifElementParser::ELEMENT_SEPARATOR, $this->content),
+            explode(QifElementParser::ELEMENT_SEPARATOR, trim($this->content)),
             fn($line) => !is_null($line) && trim($line) !== ""
         );
     }
