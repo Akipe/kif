@@ -3,12 +3,16 @@
 namespace Akipe\Kif\Generator;
 
 use Akipe\Kif\Html\HtmlGenerator;
+use Akipe\Kif\Element\QifTransaction;
 
 class QifGeneratorHTML 
 {
     private HtmlGenerator $generator;
 
     function __construct(
+        /**
+         * @var QifTransaction[]
+         */
         public readonly array $transactions,
     ){
         $this->generator = new HtmlGenerator();
@@ -60,7 +64,7 @@ class QifGeneratorHTML
             $this->generator->addTabLine(
                 [
                     "cssClass" => "date",
-                    "data" => ucfirst($transaction->date),
+                    "data" => $transaction->date->format("d/m/Y"),
                 ],
                 [
                     "cssClass" => "note",

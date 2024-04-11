@@ -3,6 +3,7 @@
 namespace Akipe\Kif\Parser;
 
 use Akipe\Kif\Element\QifTransaction;
+use DateTimeImmutable;
 
 class QifElementParser
 {
@@ -53,8 +54,11 @@ class QifElementParser
         $this->lines = array_map(function ($line) { return trim($line); }, $lines);
     }
 
-    private function getDateAttribute(): string {
-        return $this->getGenericAttribute($this->lines, self::RULE_ATTRIBUTE_DATE);
+    private function getDateAttribute(): DateTimeImmutable {
+        return DateTimeImmutable::createFromFormat(
+            "d/m/Y",
+            $this->getGenericAttribute($this->lines, self::RULE_ATTRIBUTE_DATE)
+        );
     }
 
     private function getNoteAttribute(): string {
