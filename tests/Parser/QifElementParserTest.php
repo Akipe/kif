@@ -2,7 +2,7 @@
 
 declare(strict_type=1);
 
-use Akipe\Kif\Element\QifTransaction;
+use Akipe\Kif\Element\QifElementTransaction;
 use Akipe\Kif\Parser\QifElementParser;
 use PHPUnit\Framework\TestCase;
 
@@ -17,7 +17,7 @@ final class QifElementParserTest extends TestCase
             PSWEETY
             L(NULL)
         ";
-        $desiredResult = new QifTransaction(
+        $desiredResult = new QifElementTransaction(
             "30/09/2011",
             "P",
             "-27,40",
@@ -27,7 +27,7 @@ final class QifElementParserTest extends TestCase
 
         $qifElementParser = new QifElementParser($input);
 
-        $generatedElement = $qifElementParser->getElement();
+        $generatedElement = $qifElementParser->getTransactionElement();
 
         $this->assertEquals($generatedElement, $desiredResult);
     }

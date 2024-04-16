@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Akipe\Kif\Element\QifTransaction;
+use Akipe\Kif\Element\QifElementTransaction;
 use Akipe\Kif\Parser\QifParser;
 use PHPUnit\Framework\TestCase;
 
@@ -48,35 +48,35 @@ final class QifParserTest extends TestCase
         ";
 
         $desiredResult = [];
-        $desiredResult[] = new QifTransaction(
+        $desiredResult[] = new QifElementTransaction(
             "22/01/2011",
             "",
             "0,00",
             "Opening Balance",
             "[Thomas - Banque CC]",
         );
-        $desiredResult[] = new QifTransaction(
+        $desiredResult[] = new QifElementTransaction(
             "22/01/2011",
             "P",
             "200,00",
             "VIREMENT",
             "(NULL)",
         );
-        $desiredResult[] = new QifTransaction(
+        $desiredResult[] = new QifElementTransaction(
             "27/09/2011",
             "P",
             "-29,00",
             "CAFFE",
             "(NULL)",
         );
-        $desiredResult[] = new QifTransaction(
+        $desiredResult[] = new QifElementTransaction(
             "30/09/2011",
             "P",
             "-27,40",
             "SWEETY",
             "(NULL)",
         );
-        $desiredResult[] = new QifTransaction(
+        $desiredResult[] = new QifElementTransaction(
             "03/10/2011",
             "P",
             "-60,10",

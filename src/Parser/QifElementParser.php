@@ -2,7 +2,8 @@
 
 namespace Akipe\Kif\Parser;
 
-use Akipe\Kif\Element\QifTransaction;
+use Akipe\Kif\Element\QifElementAccount;
+use Akipe\Kif\Element\QifElementTransaction;
 use DateTimeImmutable;
 
 class QifElementParser
@@ -13,6 +14,7 @@ class QifElementParser
     public const RULE_ATTRIBUTE_AMOUNT = '/^T/i';
     public const RULE_ATTRIBUTE_RECIPIENT = '/^P/i';
     public const RULE_ATTRIBUTE_CATEGORY = '/^L/i';
+    public const RULE_ATTRIBUTE_ACCOUNT_NAME = '/^N/i';
     public const VALUE_CATEGORY_EMPTY = "(null)";
 
     /** @var string[] */
@@ -27,15 +29,21 @@ class QifElementParser
     /**
      * Get parsed element with all his attributes
      * 
-     * @return QifTransaction 
+     * @return QifElementTransaction 
      */
-    public function getElement(): QifTransaction {
-        return new QifTransaction(
+    public function getTransactionElement(): QifElementTransaction {
+        return new QifElementTransaction(
             $this->getDateAttribute(),
             $this->getNoteAttribute(),
             $this->getAmountAttribute(),
             $this->getRecipientAttribute(),
             $this->getCategoryAttribute(),
+        );
+    }
+
+    public function getAccountElement(): QifElementAccount {
+        return new QifElementAccount(
+            $this->getAccountNameAttribute(),
         );
     }
 
@@ -77,6 +85,14 @@ class QifElementParser
         $category = $this->getGenericAttribute($this->lines, self::RULE_ATTRIBUTE_CATEGORY);
 
         if ($category == self::VALUE_CATEGORY_EMPTY) return "";
+
+        return $category;
+    }
+
+    private function getAccountNameAttribute(): string {
+        $category = $this->getGenericAttribute($this->lines, self::RULE_ATTRIBUTE_ACCOUNT_NAME);
+
+        if ($category == self::RULE_ATTRIBUTE_ACCOUNT_NAME) return "";
 
         return $category;
     }

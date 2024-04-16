@@ -2,20 +2,29 @@
 
 namespace Akipe\Kif\Generator;
 
+use IntlDateFormatter;
+use Akipe\Kif\Element\QifAccount;
 use Akipe\Kif\Html\HtmlGenerator;
-use Akipe\Kif\Element\QifTransaction;
 
 class QifGeneratorHTML 
 {
     private HtmlGenerator $generator;
+    private IntlDateFormatter $dateFormater;
 
-    function __construct(
-        /**
-         * @var QifTransaction[]
-         */
-        public readonly array $transactions,
+    public function __construct(
+        public readonly QifAccount $account,
     ){
         $this->generator = new HtmlGenerator();
+        $this->setDateFormater();
+    }
+
+    private function setDateFormater(): void {
+        $this->dateFormater = new IntlDateFormatter(
+            'fr_FR',
+            IntlDateFormatter::NONE,
+            IntlDateFormatter::NONE
+        );
+        $this->dateFormater->setPattern('EEEE dd MMMM YYYY'); // Exemple : "jeudi 20 février 2020"
     }
 
     /**
@@ -23,22 +32,34 @@ class QifGeneratorHTML
      * @return array{html: string, css: string} 
      */
     public function generate(string $cssFilePath): array {
-        $output = [];
-
         $this->generator->setStyle(
             file_get_contents(__DIR__ . "/style.css")
         );
-        $this->generator->setTabHeader(
-            "Date",
-            "Note",
-            "Bénéficiaire",
-            "Catégorie",
-            "Débit",
-            "Crédit",
+
+        $startDateFormated = $this->dateFormater->format(
+            $this->account->getFirstTransactionDate()
+        ); 
+        $endDateFormated = $this->dateFormater->format(
+            $this->account->getLastTransactionDate()
+        ); 
+
+        $this->generator->setTitle(
+            "Relevé de \"" . $this->account->name . "\" - TODO: VARIABLE TITRE PAGE À DÉFINIR"
+        );
+        $this->generator->setInformation(
+            "Du ". $startDateFormated ." au ". $endDateFormated ." avec un solde de ". $this->account->amountStart ." € à ". $this->account->getClosingAmount() ." €"
         );
 
+        $this->generator->setTabHeader(
+            "Date",
+            "Tiers",
+            "Remarque",
+            "Débit",
+            "Crédit",
+            "Solde",
+        );
         
-        foreach ($this->transactions as $transaction) {
+        foreach ($this->account->transactions as $transaction) {
             if ($transaction->amount < 0) {
                 $debit = [
                     "cssClass" => "debit",
@@ -59,27 +80,25 @@ class QifGeneratorHTML
                 ];
             }
 
-
-
             $this->generator->addTabLine(
                 [
                     "cssClass" => "date",
                     "data" => $transaction->date->format("d/m/Y"),
                 ],
                 [
-                    "cssClass" => "note",
-                    "data" => ucwords($transaction->note),
-                ],
-                [
                     "cssClass" => "recipient",
                     "data" => ucwords($transaction->recipient),
                 ],
                 [
-                    "cssClass" => "category",
-                    "data" => ucfirst($transaction->category),
+                    "cssClass" => "note",
+                    "data" => ucwords($transaction->note),
                 ],
                 $debit,
                 $credit,
+                [
+                    "cssClass" => "balance",
+                    "data" => number_format($transaction->getBalance(), 2, ',', ' '),
+                ],
             );
         };
 

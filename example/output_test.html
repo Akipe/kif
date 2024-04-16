@@ -1,415 +1,455 @@
 <!doctype html>
         <html>
             <head>
-                <style>
-                    
-        td {
-            border: 1px solid black;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-    
-                </style>
+                <link rel="stylesheet" type="text/css" href="style.css" />
             </head>
             <body>
-                <table>
-                    <thead>
+                <h1 class="releve-compte-titre">Relevé de "thomas - banque cc" - TODO: VARIABLE TITRE PAGE À DÉFINIR</h1>
+                <p class="releve-compte-information">Du vendredi 31 décembre 2010 au mardi 01 novembre 2011 avec un solde de 0 € à -6030.76 €</p>
+                <table class="releve-compte-tableau">
+                    <thead class="releve-compte-tableau-titre">
                         <tr>
 <th>Date</th>
-<th>Note</th>
-<th>Montant</th>
-<th>Bénéficiaire</th>
-<th>Catégorie</th>
+<th>Tiers</th>
+<th>Remarque</th>
+<th>Débit</th>
+<th>Crédit</th>
+<th>Solde</th>
 </tr>
 
                     </thead>
-                    <tbody>
+                    <tbody class="releve-compte-tableau-contenu">
                         <tr>
-<th>22/01/2011</th>
-<th></th>
-<th>0,00</th>
-<th>Opening Balance</th>
-<th>[Thomas - Banque CC]</th>
+<th class="date">31/12/2010</th>
+<th class="recipient">Retrait Dab</th>
+<th class="note">P</th>
+<th class="debit">-30,00</th>
+<th class="credit"></th>
+<th class="balance">-30,00</th>
 </tr>
 <tr>
-<th>22/01/2011</th>
-<th>P</th>
-<th>200,00</th>
-<th>VIREMENT</th>
-<th>(NULL)</th>
+<th class="date">31/12/2010</th>
+<th class="recipient">Auchan</th>
+<th class="note">P</th>
+<th class="debit">-254,58</th>
+<th class="credit"></th>
+<th class="balance">-284,58</th>
 </tr>
 <tr>
-<th>27/09/2011</th>
-<th>P</th>
-<th>-29,00</th>
-<th>CAFFE</th>
-<th>(NULL)</th>
+<th class="date">03/01/2011</th>
+<th class="recipient">Dimn</th>
+<th class="note">P</th>
+<th class="debit">-13,20</th>
+<th class="credit"></th>
+<th class="balance">-297,78</th>
 </tr>
 <tr>
-<th>30/09/2011</th>
-<th>P</th>
-<th>-27,40</th>
-<th>SWEETY</th>
-<th>(NULL)</th>
+<th class="date">04/01/2011</th>
+<th class="recipient">Cotisation</th>
+<th class="note">P</th>
+<th class="debit">-10,17</th>
+<th class="credit"></th>
+<th class="balance">-307,95</th>
 </tr>
 <tr>
-<th>03/10/2011</th>
-<th>P</th>
-<th>-60,10</th>
-<th>PHARMACIE</th>
-<th>(NULL)</th>
+<th class="date">07/01/2011</th>
+<th class="recipient">Auchan</th>
+<th class="note">P</th>
+<th class="debit">-228,56</th>
+<th class="credit"></th>
+<th class="balance">-536,51</th>
 </tr>
 <tr>
-<th>08/10/2011</th>
-<th>P</th>
-<th>-22,20</th>
-<th>BOULANGERIE</th>
-<th>(NULL)</th>
+<th class="date">08/01/2011</th>
+<th class="recipient">Virement</th>
+<th class="note">P</th>
+<th class="debit">-30,00</th>
+<th class="credit"></th>
+<th class="balance">-566,51</th>
 </tr>
 <tr>
-<th>07/10/2011</th>
-<th>P</th>
-<th>-29,20</th>
-<th>MAY</th>
-<th>(NULL)</th>
+<th class="date">08/01/2011</th>
+<th class="recipient">Virement</th>
+<th class="note">P</th>
+<th class="debit">-360,00</th>
+<th class="credit"></th>
+<th class="balance">-926,51</th>
 </tr>
 <tr>
-<th>08/10/2011</th>
-<th>P</th>
-<th>-225,23</th>
-<th>CELIO</th>
-<th>(NULL)</th>
+<th class="date">12/01/2011</th>
+<th class="recipient">Sfr Mobile</th>
+<th class="note">P</th>
+<th class="debit">-36,45</th>
+<th class="credit"></th>
+<th class="balance">-962,96</th>
 </tr>
 <tr>
-<th>24/10/2011</th>
-<th>P</th>
-<th>-110,95</th>
-<th>CELIO</th>
-<th>Soins : Habillement</th>
+<th class="date">14/01/2011</th>
+<th class="recipient">Auchan</th>
+<th class="note">P</th>
+<th class="debit">-161,67</th>
+<th class="credit"></th>
+<th class="balance">-1 124,63</th>
 </tr>
 <tr>
-<th>20/10/2011</th>
-<th>P</th>
-<th>-224,61</th>
-<th>AUCHAN</th>
-<th>Alimentation : Supermarché</th>
+<th class="date">16/01/2011</th>
+<th class="recipient">Cinema Idf</th>
+<th class="note">P</th>
+<th class="debit">-21,00</th>
+<th class="credit"></th>
+<th class="balance">-1 145,63</th>
 </tr>
 <tr>
-<th>22/10/2011</th>
-<th>P</th>
-<th>-50,00</th>
-<th>RETRAIT DAB</th>
-<th>(NULL)</th>
+<th class="date">17/01/2011</th>
+<th class="recipient">Tresor Public</th>
+<th class="note">P</th>
+<th class="debit">-59,00</th>
+<th class="credit"></th>
+<th class="balance">-1 204,63</th>
 </tr>
 <tr>
-<th>22/10/2011</th>
-<th>P</th>
-<th>-30,70</th>
-<th>SARL</th>
-<th>(NULL)</th>
+<th class="date">17/01/2011</th>
+<th class="recipient">Tresor Public</th>
+<th class="note">P</th>
+<th class="debit">-305,00</th>
+<th class="credit"></th>
+<th class="balance">-1 509,63</th>
 </tr>
 <tr>
-<th>22/10/2011</th>
-<th>P</th>
-<th>-80,65</th>
-<th>BEAUTEE</th>
-<th>Soins : Coiffeur</th>
+<th class="date">21/01/2011</th>
+<th class="recipient">Auchan</th>
+<th class="note">P</th>
+<th class="debit">-291,29</th>
+<th class="credit"></th>
+<th class="balance">-1 800,92</th>
 </tr>
 <tr>
-<th>31/10/2011</th>
-<th>P</th>
-<th>-12,60</th>
-<th>SARL</th>
-<th>(NULL)</th>
+<th class="date">22/01/2011</th>
+<th class="recipient">Virement</th>
+<th class="note">P</th>
+<th class="debit"></th>
+<th class="credit">200,00</th>
+<th class="balance">-1 600,92</th>
 </tr>
 <tr>
-<th>01/11/2011</th>
-<th>P</th>
-<th>-10,10</th>
-<th>ALIM DIAGONAL</th>
-<th>(NULL)</th>
+<th class="date">22/01/2011</th>
+<th class="recipient">Darty</th>
+<th class="note">P</th>
+<th class="debit">-669,00</th>
+<th class="credit"></th>
+<th class="balance">-2 269,92</th>
 </tr>
 <tr>
-<th>28/10/2011</th>
-<th>P</th>
-<th>-18,44</th>
-<th>ALIM DIAGONAL</th>
-<th>(NULL)</th>
+<th class="date">22/01/2011</th>
+<th class="recipient">Au Bois</th>
+<th class="note">P</th>
+<th class="debit">-60,96</th>
+<th class="credit"></th>
+<th class="balance">-2 330,88</th>
 </tr>
 <tr>
-<th>25/10/2011</th>
-<th>P</th>
-<th>-93,70</th>
-<th>TOUR DE CHINE</th>
-<th>Alimentation : Restaurant</th>
+<th class="date">28/01/2011</th>
+<th class="recipient">Auchan</th>
+<th class="note">P</th>
+<th class="debit">-291,45</th>
+<th class="credit"></th>
+<th class="balance">-2 622,33</th>
 </tr>
 <tr>
-<th>01/11/2011</th>
-<th>P</th>
-<th>-78,30</th>
-<th>AU BOIS</th>
-<th>(NULL)</th>
+<th class="date">03/02/2011</th>
+<th class="recipient">Sfr Mobile</th>
+<th class="note">P</th>
+<th class="debit">-29,89</th>
+<th class="credit"></th>
+<th class="balance">-2 652,22</th>
 </tr>
 <tr>
-<th>29/10/2011</th>
-<th>P</th>
-<th>-227,85</th>
-<th>AUCHAN</th>
-<th>(NULL)</th>
+<th class="date">03/02/2011</th>
+<th class="recipient">Sfr Mobile</th>
+<th class="note">P</th>
+<th class="debit">-29,89</th>
+<th class="credit"></th>
+<th class="balance">-2 682,11</th>
 </tr>
 <tr>
-<th>26/10/2011</th>
-<th>P</th>
-<th>-55,50</th>
-<th>COIFFUR</th>
-<th>Soins : Coiffeur</th>
+<th class="date">04/02/2011</th>
+<th class="recipient">Auchan</th>
+<th class="note">P</th>
+<th class="debit">-239,83</th>
+<th class="credit"></th>
+<th class="balance">-2 921,94</th>
 </tr>
 <tr>
-<th>22/10/2011</th>
-<th>P</th>
-<th>-201,15</th>
-<th>LA CABANE</th>
-<th>(NULL)</th>
+<th class="date">05/02/2011</th>
+<th class="recipient">Pharmacie</th>
+<th class="note">P</th>
+<th class="debit">-38,16</th>
+<th class="credit"></th>
+<th class="balance">-2 960,10</th>
 </tr>
 <tr>
-<th>24/10/2011</th>
-<th>P</th>
-<th>-37,48</th>
-<th>AUCHAN</th>
-<th>Alimentation : Supermarché</th>
+<th class="date">09/02/2011</th>
+<th class="recipient">Sncf</th>
+<th class="note">P</th>
+<th class="debit">-198,50</th>
+<th class="credit"></th>
+<th class="balance">-3 158,60</th>
 </tr>
 <tr>
-<th>24/10/2011</th>
-<th>P</th>
-<th>-82,94</th>
-<th>MARIONNAU</th>
-<th>(NULL)</th>
+<th class="date">11/02/2011</th>
+<th class="recipient">Shell</th>
+<th class="note">P</th>
+<th class="debit">-617,66</th>
+<th class="credit"></th>
+<th class="balance">-3 776,26</th>
 </tr>
 <tr>
-<th>24/10/2011</th>
-<th>P</th>
-<th>-3,98</th>
-<th>KIABI</th>
-<th>Soins : Habillement</th>
+<th class="date">19/02/2011</th>
+<th class="recipient">Virement</th>
+<th class="note">P</th>
+<th class="debit">-50,00</th>
+<th class="credit"></th>
+<th class="balance">-3 826,26</th>
 </tr>
 <tr>
-<th>01/11/2011</th>
-<th>P</th>
-<th>-30,00</th>
-<th>VIREMENT</th>
-<th>(NULL)</th>
+<th class="date">24/02/2011</th>
+<th class="recipient">Virement</th>
+<th class="note">P</th>
+<th class="debit">-50,00</th>
+<th class="credit"></th>
+<th class="balance">-3 876,26</th>
 </tr>
 <tr>
-<th>01/11/2011</th>
-<th>P</th>
-<th>-3 000,00</th>
-<th>VIREMENT</th>
-<th>(NULL)</th>
+<th class="date">03/03/2011</th>
+<th class="recipient">Sfr Mobile</th>
+<th class="note">P</th>
+<th class="debit">-29,71</th>
+<th class="credit"></th>
+<th class="balance">-3 905,97</th>
 </tr>
 <tr>
-<th>01/11/2011</th>
-<th>P</th>
-<th>-150,00</th>
-<th>VIREMENT</th>
-<th>(NULL)</th>
+<th class="date">03/03/2011</th>
+<th class="recipient">Sfr Mobile</th>
+<th class="note">P</th>
+<th class="debit">-29,71</th>
+<th class="credit"></th>
+<th class="balance">-3 935,68</th>
 </tr>
 <tr>
-<th>08/01/2011</th>
-<th>P</th>
-<th>-30,00</th>
-<th>VIREMENT</th>
-<th>(NULL)</th>
+<th class="date">06/03/2011</th>
+<th class="recipient">Virement</th>
+<th class="note">P</th>
+<th class="debit">-50,00</th>
+<th class="credit"></th>
+<th class="balance">-3 985,68</th>
 </tr>
 <tr>
-<th>08/01/2011</th>
-<th>P</th>
-<th>-360,00</th>
-<th>VIREMENT</th>
-<th>(NULL)</th>
+<th class="date">06/03/2011</th>
+<th class="recipient">Virement</th>
+<th class="note">P</th>
+<th class="debit">-150,00</th>
+<th class="credit"></th>
+<th class="balance">-4 135,68</th>
 </tr>
 <tr>
-<th>12/01/2011</th>
-<th>P</th>
-<th>-36,45</th>
-<th>SFR MOBILE</th>
-<th>(NULL)</th>
+<th class="date">27/09/2011</th>
+<th class="recipient">Caffe</th>
+<th class="note">P</th>
+<th class="debit">-29,00</th>
+<th class="credit"></th>
+<th class="balance">-4 164,68</th>
 </tr>
 <tr>
-<th>17/01/2011</th>
-<th>P</th>
-<th>-59,00</th>
-<th>TRESOR PUBLIC</th>
-<th>(NULL)</th>
+<th class="date">30/09/2011</th>
+<th class="recipient">Sweety</th>
+<th class="note">P</th>
+<th class="debit">-27,40</th>
+<th class="credit"></th>
+<th class="balance">-4 192,08</th>
 </tr>
 <tr>
-<th>31/12/2010</th>
-<th>P</th>
-<th>-30,00</th>
-<th>RETRAIT DAB</th>
-<th>(NULL)</th>
+<th class="date">03/10/2011</th>
+<th class="recipient">Pharmacie</th>
+<th class="note">P</th>
+<th class="debit">-60,10</th>
+<th class="credit"></th>
+<th class="balance">-4 252,18</th>
 </tr>
 <tr>
-<th>31/12/2010</th>
-<th>P</th>
-<th>-254,58</th>
-<th>AUCHAN</th>
-<th>Alimentation : Supermarché</th>
+<th class="date">07/10/2011</th>
+<th class="recipient">May</th>
+<th class="note">P</th>
+<th class="debit">-29,20</th>
+<th class="credit"></th>
+<th class="balance">-4 281,38</th>
 </tr>
 <tr>
-<th>03/01/2011</th>
-<th>P</th>
-<th>-13,20</th>
-<th>DIMN</th>
-<th>(NULL)</th>
+<th class="date">08/10/2011</th>
+<th class="recipient">Boulangerie</th>
+<th class="note">P</th>
+<th class="debit">-22,20</th>
+<th class="credit"></th>
+<th class="balance">-4 303,58</th>
 </tr>
 <tr>
-<th>07/01/2011</th>
-<th>P</th>
-<th>-228,56</th>
-<th>AUCHAN</th>
-<th>Alimentation : Supermarché</th>
+<th class="date">08/10/2011</th>
+<th class="recipient">Celio</th>
+<th class="note">P</th>
+<th class="debit">-225,23</th>
+<th class="credit"></th>
+<th class="balance">-4 528,81</th>
 </tr>
 <tr>
-<th>14/01/2011</th>
-<th>P</th>
-<th>-161,67</th>
-<th>AUCHAN</th>
-<th>Alimentation : Supermarché</th>
+<th class="date">20/10/2011</th>
+<th class="recipient">Auchan</th>
+<th class="note">P</th>
+<th class="debit">-224,61</th>
+<th class="credit"></th>
+<th class="balance">-4 753,42</th>
 </tr>
 <tr>
-<th>16/01/2011</th>
-<th>P</th>
-<th>-21,00</th>
-<th>CINEMA IDF</th>
-<th>(NULL)</th>
+<th class="date">22/10/2011</th>
+<th class="recipient">Retrait Dab</th>
+<th class="note">P</th>
+<th class="debit">-50,00</th>
+<th class="credit"></th>
+<th class="balance">-4 803,42</th>
 </tr>
 <tr>
-<th>21/01/2011</th>
-<th>P</th>
-<th>-291,29</th>
-<th>AUCHAN</th>
-<th>Alimentation : Supermarché</th>
+<th class="date">22/10/2011</th>
+<th class="recipient">Sarl</th>
+<th class="note">P</th>
+<th class="debit">-30,70</th>
+<th class="credit"></th>
+<th class="balance">-4 834,12</th>
 </tr>
 <tr>
-<th>22/01/2011</th>
-<th>P</th>
-<th>-669,00</th>
-<th>DARTY</th>
-<th>Logement : Electroménager</th>
+<th class="date">22/10/2011</th>
+<th class="recipient">Beautee</th>
+<th class="note">P</th>
+<th class="debit">-80,65</th>
+<th class="credit"></th>
+<th class="balance">-4 914,77</th>
 </tr>
 <tr>
-<th>22/01/2011</th>
-<th>P</th>
-<th>-60,96</th>
-<th>AU BOIS</th>
-<th>Alimentation : Bar</th>
+<th class="date">22/10/2011</th>
+<th class="recipient">La Cabane</th>
+<th class="note">P</th>
+<th class="debit">-201,15</th>
+<th class="credit"></th>
+<th class="balance">-5 115,92</th>
 </tr>
 <tr>
-<th>28/01/2011</th>
-<th>P</th>
-<th>-291,45</th>
-<th>AUCHAN</th>
-<th>Alimentation : Supermarché</th>
+<th class="date">24/10/2011</th>
+<th class="recipient">Celio</th>
+<th class="note">P</th>
+<th class="debit">-110,95</th>
+<th class="credit"></th>
+<th class="balance">-5 226,87</th>
 </tr>
 <tr>
-<th>04/01/2011</th>
-<th>P</th>
-<th>-10,17</th>
-<th>COTISATION</th>
-<th>Frais financiers : Frais bancaires</th>
+<th class="date">24/10/2011</th>
+<th class="recipient">Auchan</th>
+<th class="note">P</th>
+<th class="debit">-37,48</th>
+<th class="credit"></th>
+<th class="balance">-5 264,35</th>
 </tr>
 <tr>
-<th>19/02/2011</th>
-<th>P</th>
-<th>-50,00</th>
-<th>VIREMENT</th>
-<th>(NULL)</th>
+<th class="date">24/10/2011</th>
+<th class="recipient">Marionnau</th>
+<th class="note">P</th>
+<th class="debit">-82,94</th>
+<th class="credit"></th>
+<th class="balance">-5 347,29</th>
 </tr>
 <tr>
-<th>24/02/2011</th>
-<th>P</th>
-<th>-50,00</th>
-<th>VIREMENT</th>
-<th>(NULL)</th>
+<th class="date">24/10/2011</th>
+<th class="recipient">Kiabi</th>
+<th class="note">P</th>
+<th class="debit">-3,98</th>
+<th class="credit"></th>
+<th class="balance">-5 351,27</th>
 </tr>
 <tr>
-<th>03/02/2011</th>
-<th>P</th>
-<th>-29,89</th>
-<th>SFR MOBILE</th>
-<th>(NULL)</th>
+<th class="date">25/10/2011</th>
+<th class="recipient">Tour De Chine</th>
+<th class="note">P</th>
+<th class="debit">-93,70</th>
+<th class="credit"></th>
+<th class="balance">-5 444,97</th>
 </tr>
 <tr>
-<th>03/02/2011</th>
-<th>P</th>
-<th>-29,89</th>
-<th>SFR MOBILE</th>
-<th>(NULL)</th>
+<th class="date">26/10/2011</th>
+<th class="recipient">Coiffur</th>
+<th class="note">P</th>
+<th class="debit">-55,50</th>
+<th class="credit"></th>
+<th class="balance">-5 500,47</th>
 </tr>
 <tr>
-<th>17/01/2011</th>
-<th>P</th>
-<th>-305,00</th>
-<th>TRESOR PUBLIC</th>
-<th>(NULL)</th>
+<th class="date">28/10/2011</th>
+<th class="recipient">Alim Diagonal</th>
+<th class="note">P</th>
+<th class="debit">-18,44</th>
+<th class="credit"></th>
+<th class="balance">-5 518,91</th>
 </tr>
 <tr>
-<th>04/02/2011</th>
-<th>P</th>
-<th>-239,83</th>
-<th>AUCHAN</th>
-<th>Alimentation : Supermarché</th>
+<th class="date">29/10/2011</th>
+<th class="recipient">Auchan</th>
+<th class="note">P</th>
+<th class="debit">-227,85</th>
+<th class="credit"></th>
+<th class="balance">-5 746,76</th>
 </tr>
 <tr>
-<th>05/02/2011</th>
-<th>P</th>
-<th>-38,16</th>
-<th>PHARMACIE</th>
-<th>(NULL)</th>
+<th class="date">31/10/2011</th>
+<th class="recipient">Sarl</th>
+<th class="note">P</th>
+<th class="debit">-12,60</th>
+<th class="credit"></th>
+<th class="balance">-5 759,36</th>
 </tr>
 <tr>
-<th>09/02/2011</th>
-<th>P</th>
-<th>-198,50</th>
-<th>SNCF</th>
-<th>(NULL)</th>
+<th class="date">01/11/2011</th>
+<th class="recipient">Alim Diagonal</th>
+<th class="note">P</th>
+<th class="debit">-10,10</th>
+<th class="credit"></th>
+<th class="balance">-5 769,46</th>
 </tr>
 <tr>
-<th>11/02/2011</th>
-<th>P</th>
-<th>-617,66</th>
-<th>SHELL</th>
-<th>Automobile : Entretien</th>
+<th class="date">01/11/2011</th>
+<th class="recipient">Au Bois</th>
+<th class="note">P</th>
+<th class="debit">-78,30</th>
+<th class="credit"></th>
+<th class="balance">-5 847,76</th>
 </tr>
 <tr>
-<th>06/03/2011</th>
-<th>P</th>
-<th>-50,00</th>
-<th>VIREMENT</th>
-<th>(NULL)</th>
+<th class="date">01/11/2011</th>
+<th class="recipient">Virement</th>
+<th class="note">P</th>
+<th class="debit">-30,00</th>
+<th class="credit"></th>
+<th class="balance">-5 877,76</th>
 </tr>
 <tr>
-<th>06/03/2011</th>
-<th>P</th>
-<th>-150,00</th>
-<th>VIREMENT</th>
-<th>(NULL)</th>
+<th class="date">01/11/2011</th>
+<th class="recipient">Virement</th>
+<th class="note">P</th>
+<th class="debit">-3,00</th>
+<th class="credit"></th>
+<th class="balance">-5 880,76</th>
 </tr>
 <tr>
-<th>03/03/2011</th>
-<th>P</th>
-<th>-29,71</th>
-<th>SFR MOBILE</th>
-<th>(NULL)</th>
-</tr>
-<tr>
-<th>03/03/2011</th>
-<th>P</th>
-<th>-29,71</th>
-<th>SFR MOBILE</th>
-<th>(NULL)</th>
+<th class="date">01/11/2011</th>
+<th class="recipient">Virement</th>
+<th class="note">P</th>
+<th class="debit">-150,00</th>
+<th class="credit"></th>
+<th class="balance">-6 030,76</th>
 </tr>
 
                     </tbody>

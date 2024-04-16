@@ -8,7 +8,7 @@
 }
 
 .releve-compte-tableau thead {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
 }
 
 .releve-compte-tableau tr {
@@ -17,7 +17,9 @@
 
 .releve-compte-tableau-contenu th {
     font-weight: normal;
-    padding: 2px 5px;
+    padding: 1px 3px;
+
+    font-size: 0.7rem;
 }
 
 .releve-compte-tableau-contenu tr:nth-child(odd) {
@@ -34,6 +36,14 @@
     text-align: left;
 }
 
-.releve-compte-tableau .debit, .releve-compte-tableau .credit {
+.releve-compte-tableau .debit, .releve-compte-tableau .credit, .releve-compte-tableau .balance {
     text-align: right;
+}
+
+.releve-compte-titre {
+    font-size: 1.2rem;
+}
+
+.releve-compte-information {
+    font-size: 0.8rem;
 }

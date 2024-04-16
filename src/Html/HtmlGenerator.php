@@ -7,15 +7,27 @@ class HtmlGenerator
     private string $style;
     private string $tabHeader;
     private string $tabContent;
+    private string $title;
+    private string $information;
 
     public function __construct() {
         $this->style = "";
         $this->tabHeader = "";
         $this->tabContent = "";
+        $this->title = "";
+        $this->information = "";
     }
 
     public function setStyle(string $style): void {
         $this->style = $style;
+    }
+
+    public function setTitle(string $title): void {
+        $this->title = $title;
+    }
+
+    public function setInformation(string $information): void {
+        $this->information = $information;
     }
 
     /**
@@ -59,7 +71,8 @@ class HtmlGenerator
                 <link rel=\"stylesheet\" type=\"text/css\" href=\"" . $cssFilePath . "\" />
             </head>
             <body>
-                <h1>Relevé de compte</h1>
+                <h1 class=\"releve-compte-titre\">". $this->title . "</h1>
+                <p class=\"releve-compte-information\">". $this->information . "</p>
                 <table class=\"releve-compte-tableau\">
                     <thead class=\"releve-compte-tableau-titre\">
                         ". $this->tabHeader . "
