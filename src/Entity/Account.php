@@ -1,11 +1,11 @@
 <?php
 
-namespace Akipe\Kif\Element;
+namespace Akipe\Kif\Entity;
 
 use DateTimeImmutable;
-use Akipe\Kif\Element\QifElementTransaction;
+use Akipe\Kif\Entity\Transaction;
 
-class QifAccount
+class Account
 {
   /** @var float[] */
   public readonly array $balanceTransactions;
@@ -50,7 +50,7 @@ class QifAccount
     return $this->getLastTransaction()->getBalance();
   }
 
-  private function getLastTransaction(): QifElementTransaction
+  private function getLastTransaction(): Transaction
   {
     return $this->transactions[array_key_last($this->transactions)];
   }

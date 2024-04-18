@@ -1,13 +1,13 @@
 <?php
 
-namespace Akipe\Kif\Parser;
+namespace Akipe\Kif\Parser\Qif;
 
-use Akipe\Kif\Element\QifAccount;
-use Akipe\Kif\Parser\QifElementParser;
-use Akipe\Kif\Element\QifElementAccount;
-use Akipe\Kif\Element\QifElementTransaction;
+use Akipe\Kif\Parser\Parser;
+use Akipe\Kif\Entity\Account;
+use Akipe\Kif\Entity\Transaction;
+use Akipe\Kif\Parser\Qif\Element\QifElementAccount;
 
-class QifParser
+class QifParser implements Parser
 {
   public const INFO_OPENING_TRANSACTION_ELEMENT_RULE = "!Type:Bank";
   public const FIRST_ELEMENT_ACCOUNT_RULE = "!Account";
@@ -26,7 +26,7 @@ class QifParser
   /**
    * Get all transactions
    *
-   * @return QifElementTransaction[]
+   * @return Transaction[]
    */
   public function getTransactions(): array {
     $transactions = [];
@@ -49,7 +49,7 @@ class QifParser
 
   /**
    *
-   * @param QifElementTransaction[] $transactions
+   * @param Transaction[] $transactions
    * @return void
    */
   private function sortTransactionsOldestToLatest(array &$transactions): void {
@@ -73,7 +73,7 @@ class QifParser
     return 0;
   }
 
-  private function getOpeningAccountElement(): QifElementTransaction {
+  private function getOpeningAccountElement(): Transaction {
     return (
       new QifElementParser(
         $this->elements[$this->getOpeningAccountElementIndex()]
@@ -98,8 +98,8 @@ class QifParser
     return ($this->getOpeningAccountElementIndex() + 1);
   }
 
-  public function getAccount(): QifAccount {
-    return new QifAccount(
+  public function getAccount(): Account {
+    return new Account(
       $this->getAccountElement()->name,
       $this->getOpeningAccountElement()->amount,
       $this->getTransactions(),

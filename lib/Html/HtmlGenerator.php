@@ -1,6 +1,6 @@
 <?php
 
-namespace Akipe\Kif\Html;
+namespace Akipe\Lib\Html;
 
 class HtmlGenerator
 {

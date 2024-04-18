@@ -1,6 +1,6 @@
 <?php
 
-namespace Akipe\Kif\Element;
+namespace Akipe\Kif\Parser\Qif\Element;
 
 class QifElementAccount
 {

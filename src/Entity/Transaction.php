@@ -1,10 +1,10 @@
 <?php
 
-namespace Akipe\Kif\Element;
+namespace Akipe\Kif\Entity;
 
 use DateTimeImmutable;
 
-class QifElementTransaction
+class Transaction
 {
   private ?float $balance;
 
@@ -19,7 +19,7 @@ class QifElementTransaction
   }
 
   public function setBalance(
-    QifElementTransaction|float $previousTransaction
+    Transaction|float $previousTransaction
   ): void {
     if ($previousTransaction instanceof self) {
       if (!is_null($previousTransaction->balance)) {

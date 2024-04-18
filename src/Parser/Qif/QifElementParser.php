@@ -1,10 +1,10 @@
 <?php
 
-namespace Akipe\Kif\Parser;
+namespace Akipe\Kif\Parser\Qif;
 
-use Akipe\Kif\Element\QifElementAccount;
-use Akipe\Kif\Element\QifElementTransaction;
 use DateTimeImmutable;
+use Akipe\Kif\Entity\Transaction;
+use Akipe\Kif\Parser\Qif\Element\QifElementAccount;
 
 class QifElementParser
 {
@@ -29,10 +29,10 @@ class QifElementParser
   /**
    * Get parsed element with all his attributes
    *
-   * @return QifElementTransaction
+   * @return Transaction
    */
-  public function getTransactionElement(): QifElementTransaction {
-    return new QifElementTransaction(
+  public function getTransactionElement(): Transaction {
+    return new Transaction(
       $this->getDateAttribute(),
       $this->getNoteAttribute(),
       $this->getAmountAttribute(),

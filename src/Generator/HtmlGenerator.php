@@ -3,20 +3,20 @@
 namespace Akipe\Kif\Generator;
 
 use IntlDateFormatter;
-use Akipe\Kif\Element\QifAccount;
+use Akipe\Kif\Entity\Account;
+use Akipe\Lib\Html\HtmlGenerator as Html;
 use Akipe\Kif\Environment\Configuration;
-use Akipe\Kif\Html\HtmlGenerator;
 
-class QifGeneratorHTML
+class HtmlGenerator
 {
-  private HtmlGenerator $generator;
+  private Html $generator;
   private IntlDateFormatter $dateFormater;
   private Configuration $configuration;
 
   public function __construct(
-    public readonly QifAccount $account,
+    public readonly Account $account,
   ){
-    $this->generator = new HtmlGenerator();
+    $this->generator = new Html();
     $this->setDateFormater();
     $this->configuration = new Configuration();
   }

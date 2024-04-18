@@ -2,20 +2,21 @@
 
 namespace Akipe\Kif;
 
-use Akipe\Kif\Parser\QifParser;
-use Akipe\Kif\Generator\QifGeneratorHTML;
+use Akipe\Kif\Parser\Parser;
+use Akipe\Kif\Parser\Qif\QifParser;
+use Akipe\Kif\Generator\HtmlGenerator;
 
 class Kif
 {
-  private QifParser $parser;
-  private QifGeneratorHtml $generator;
+  private Parser $parser;
+  private HtmlGenerator $generator;
 
   public function __construct(
     public readonly string $content,
   ){
     $this->parser = new QifParser($content);
 
-    $this->generator = new QifGeneratorHTML(
+    $this->generator = new HtmlGenerator(
         $this->parser->getAccount()
     );
   }
