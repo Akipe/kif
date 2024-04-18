@@ -3,8 +3,10 @@
 namespace Akipe\Kif\Parser\Qif;
 
 use DateTimeImmutable;
+use DateTimeInterface;
 use Akipe\Kif\Entity\Transaction;
-use Akipe\Kif\Parser\Qif\Element\QifElementAccount;
+use Akipe\Kif\Parser\Qif\Element\QifAccountElement;
+use Akipe\Kif\Parser\Qif\Element\QifOpeningElement;
 
 class QifTransactionParser
 {
@@ -41,9 +43,16 @@ class QifTransactionParser
     );
   }
 
-  public function parseAccountElement(): QifElementAccount {
-    return new QifElementAccount(
+  public function parseAccountElement(): QifAccountElement {
+    return new QifAccountElement(
       $this->parseAccountNameAttribute(),
+    );
+  }
+
+  public function parseOpeningElement(): QifOpeningElement {
+    return new QifOpeningElement(
+      $this->parseDateAttribute(),
+      $this->parseAmountAttribute(),
     );
   }
 
@@ -56,13 +65,13 @@ class QifTransactionParser
   private function setLinesElement(string $element): void {
     $lines = explode(PHP_EOL, $element);
 
-    $this->lines = array_map(
+    $this->lines = array_filter(array_map(
       fn ($line) => trim($line),
       $lines
-    );
+    ));
   }
 
-  private function parseDateAttribute(): DateTimeImmutable {
+  private function parseDateAttribute(): DateTimeInterface {
     return DateTimeImmutable::createFromFormat(
       "d/m/Y",
       $this->parseCommonRuleAttribute($this->lines, self::RULE_ATTRIBUTE_DATE)
@@ -103,7 +112,7 @@ class QifTransactionParser
   ): string {
     $attributsFound = preg_grep($regexRule, $attributes);
 
-    return strtolower($this->getAttributValue(array_shift($attributsFound), 1));
+    return strtolower($this->getAttributValue(reset($attributsFound)));
   }
 
   private function getAttributValue(?string $qifLine) {

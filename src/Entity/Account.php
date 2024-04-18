@@ -2,8 +2,8 @@
 
 namespace Akipe\Kif\Entity;
 
-use DateTimeImmutable;
 use Akipe\Kif\Entity\Transaction;
+use DateTimeInterface;
 
 class Account
 {
@@ -30,12 +30,12 @@ class Account
     }
   }
 
-  public function getFirstTransactionDate(): DateTimeImmutable
+  public function getFirstTransactionDate(): DateTimeInterface
   {
     return $this->transactions[0]->date;
   }
 
-  public function getLastTransactionDate(): DateTimeImmutable
+  public function getLastTransactionDate(): DateTimeInterface
   {
     return $this->getLastTransaction()->date;
   }

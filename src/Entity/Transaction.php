@@ -2,14 +2,14 @@
 
 namespace Akipe\Kif\Entity;
 
-use DateTimeImmutable;
+use DateTimeInterface;
 
 class Transaction
 {
   private ?float $balance;
 
   public function __construct(
-    public readonly DateTimeImmutable $date,
+    public readonly DateTimeInterface $date,
     public readonly string $note,
     public readonly float $amount,
     public readonly string $recipient,
