@@ -29,7 +29,7 @@ class QifParser implements Parser
    *
    * @return Transaction[]
    */
-  public function getTransactions(): array {
+  private function getTransactions(): array {
     $transactions = [];
 
     // Parcourir toutes les transactions
