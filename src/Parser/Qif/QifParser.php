@@ -38,8 +38,8 @@ class QifParser implements Parser
       $index++
     ) {
       $transactions[] =
-        (new QifElementParser($this->elements[$index]))
-        ->getTransactionElement();
+        (new QifTransactionParser($this->elements[$index]))
+        ->parse();
     }
 
     $this->sortTransactionsOldestToLatest($transactions);
@@ -75,15 +75,15 @@ class QifParser implements Parser
 
   private function getOpeningAccountElement(): Transaction {
     return (
-      new QifElementParser(
+      new QifTransactionParser(
         $this->elements[$this->getOpeningAccountElementIndex()]
       )
-    )->getTransactionElement();
+    )->parse();
   }
 
   private function getAccountElement(): QifElementAccount {
     return (
-      new QifElementParser(
+      new QifTransactionParser(
         $this->elements[$this->getFirstElementAccountIndex()]
       )
     )->getAccountElement();
@@ -113,7 +113,7 @@ class QifParser implements Parser
    */
   private function setElements(): void {
     $this->elements = array_filter(
-      explode(QifElementParser::ELEMENT_SEPARATOR, trim($this->content)),
+      explode(QifTransactionParser::ELEMENT_SEPARATOR, trim($this->content)),
       fn($line) => !is_null($line) && trim($line) !== ""
     );
   }

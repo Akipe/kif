@@ -6,7 +6,7 @@ use DateTimeImmutable;
 use Akipe\Kif\Entity\Transaction;
 use Akipe\Kif\Parser\Qif\Element\QifElementAccount;
 
-class QifElementParser
+class QifTransactionParser
 {
   public const ELEMENT_SEPARATOR = "^";
   public const RULE_ATTRIBUTE_DATE = '/^D/i';
@@ -31,7 +31,7 @@ class QifElementParser
    *
    * @return Transaction
    */
-  public function getTransactionElement(): Transaction {
+  public function parse(): Transaction {
     return new Transaction(
       $this->getDateAttribute(),
       $this->getNoteAttribute(),

@@ -7,16 +7,17 @@ use PHPUnit\Framework\TestCase;
 
 final class KifTest extends TestCase
 {
-    public function testHtmlGeneratedCorresponding(): void
+    public function test_qif_to_html_is_result_expected(): void
     {
-        $input = file_get_contents(__DIR__ . "/KifTest/input.qif");
-        $output = file_get_contents(__DIR__ . "/KifTest/output.html");
+        $qif = file_get_contents(__DIR__ . "/KifTestInput.qif");
+        $htmlExpected = file_get_contents(__DIR__ . "/KifTestOutput.html");
 
-        $outputGenerated = (new Kif($input))->generateHtml();
+        $kif = new Kif();
 
-        $this->assertEquals(
-            $output,
-            $outputGenerated
-        );
+        $htmlGenerated = $kif
+          ->parseQif($qif)
+          ->generateHtml();
+
+        $this->assertEquals($htmlExpected, $htmlGenerated);
     }
 }
