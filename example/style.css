@@ -1,49 +1,48 @@
-
 .releve-compte-tableau {
-    width: 100%;
+  width: 100%;
 
-    border-collapse: collapse;
+  border-collapse: collapse;
 
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 .releve-compte-tableau thead {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
 .releve-compte-tableau tr {
-    border-bottom: 1px solid rgb(192, 192, 192);
+  border-bottom: 1px solid rgb(192, 192, 192);
 }
 
 .releve-compte-tableau-contenu th {
-    font-weight: normal;
-    padding: 1px 3px;
+  font-weight: normal;
+  padding: 1px 3px;
 
-    font-size: 0.7rem;
+  font-size: 0.7rem;
 }
 
 .releve-compte-tableau-contenu tr:nth-child(odd) {
-    color: black !important;;
-    print-color-adjust: exact;
+  color: black !important;;
+  print-color-adjust: exact;
 }
 
 .releve-compte-tableau-contenu tr:nth-child(even) {
-    color: rgb(110, 110, 110) !important;;
-    print-color-adjust: exact;
+  color: rgb(110, 110, 110) !important;;
+  print-color-adjust: exact;
 }
 
 .releve-compte-tableau .note, .releve-compte-tableau .recipient, .releve-compte-tableau .category {
-    text-align: left;
+  text-align: left;
 }
 
 .releve-compte-tableau .debit, .releve-compte-tableau .credit, .releve-compte-tableau .balance {
-    text-align: right;
+  text-align: right;
 }
 
 .releve-compte-titre {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .releve-compte-information {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 }
