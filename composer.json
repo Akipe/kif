@@ -17,5 +17,8 @@
     },
     "scripts": {
         "test": "./vendor/bin/phpunit tests"
+    },
+    "require": {
+        "symfony/dotenv": "^7.0"
     }
 }

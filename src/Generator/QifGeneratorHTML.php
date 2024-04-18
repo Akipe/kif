@@ -4,18 +4,21 @@ namespace Akipe\Kif\Generator;
 
 use IntlDateFormatter;
 use Akipe\Kif\Element\QifAccount;
+use Akipe\Kif\Environment\Configuration;
 use Akipe\Kif\Html\HtmlGenerator;
 
 class QifGeneratorHTML
 {
   private HtmlGenerator $generator;
   private IntlDateFormatter $dateFormater;
+  private Configuration $configuration;
 
   public function __construct(
     public readonly QifAccount $account,
   ){
     $this->generator = new HtmlGenerator();
     $this->setDateFormater();
+    $this->configuration = new Configuration();
   }
 
   private function setDateFormater(): void {
@@ -44,7 +47,7 @@ class QifGeneratorHTML
     );
 
     $this->generator->setTitle(
-      "Relevé de \"" . $this->account->name . "\" - TODO: VARIABLE TITRE PAGE À DÉFINIR"
+      "Relevé de \"" . $this->account->name . "\" - ". $this->configuration->getStructureName()
     );
     $this->generator->setInformation(
       "Du ". $startDateFormated ." au ". $endDateFormated ." avec un solde de ". $this->account->amountStart ." € à ". $this->account->getClosingAmount() ." €"
