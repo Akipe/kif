@@ -1,14 +1,14 @@
 <?php
 
-namespace Akipe\Kif\Generator\Html;
+namespace Akipe\Kif\ViewGenerator\Html;
 
 use IntlDateFormatter;
 use Akipe\Kif\Entity\Account;
 use Akipe\Kif\Environment\Configuration;
-use Akipe\Kif\Generator\Generator;
 use Akipe\Lib\Html\HtmlGenerator as Html;
+use Akipe\Kif\ViewGenerator\ViewGenerator;
 
-class HtmlGenerator implements Generator
+class HtmlGenerator implements ViewGenerator
 {
   private Html $generator;
   private IntlDateFormatter $dateFormater;

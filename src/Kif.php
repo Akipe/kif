@@ -4,7 +4,7 @@ namespace Akipe\Kif;
 
 use Akipe\Kif\Parser\Parser;
 use Akipe\Kif\Entity\Account;
-use Akipe\Kif\Generator\Generator;
+use Akipe\Kif\ViewGenerator\ViewGenerator;
 
 class Kif
 {
@@ -16,8 +16,8 @@ class Kif
     return $this;
   }
 
-  public function generateView(Generator $generator): string {
-    return $generator
+  public function generateView(ViewGenerator $viewGenerator): string {
+    return $viewGenerator
       ->load($this->account)
       ->generate();
   }

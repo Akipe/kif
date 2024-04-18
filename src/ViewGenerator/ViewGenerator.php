@@ -1,10 +1,10 @@
 <?php
 
-namespace Akipe\Kif\Generator;
+namespace Akipe\Kif\ViewGenerator;
 
 use Akipe\Kif\Entity\Account;
 
-interface Generator
+interface ViewGenerator
 {
   public function load(Account $account): self;
   public function generate(): string;

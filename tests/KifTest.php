@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Akipe\Kif\Generator\Html\HtmlGenerator;
 use Akipe\Kif\Kif;
-use Akipe\Kif\Parser\Qif\QifParser;
 use PHPUnit\Framework\TestCase;
+use Akipe\Kif\Parser\Qif\QifParser;
+use Akipe\Kif\ViewGenerator\Html\HtmlGenerator;
 
 final class KifTest extends TestCase
 {

@@ -2,9 +2,9 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Akipe\Kif\Generator\Html\HtmlGenerator;
 use Akipe\Kif\Kif;
 use Akipe\Kif\Parser\Qif\QifParser;
+use Akipe\Kif\ViewGenerator\Html\HtmlGenerator;
 
 $kif = new Kif();
 
