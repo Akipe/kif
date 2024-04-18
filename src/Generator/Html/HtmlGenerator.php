@@ -1,13 +1,14 @@
 <?php
 
-namespace Akipe\Kif\Generator;
+namespace Akipe\Kif\Generator\Html;
 
 use IntlDateFormatter;
 use Akipe\Kif\Entity\Account;
-use Akipe\Lib\Html\HtmlGenerator as Html;
 use Akipe\Kif\Environment\Configuration;
+use Akipe\Kif\Generator\Generator;
+use Akipe\Lib\Html\HtmlGenerator as Html;
 
-class HtmlGenerator
+class HtmlGenerator implements Generator
 {
   private Html $generator;
   private IntlDateFormatter $dateFormater;
@@ -30,11 +31,7 @@ class HtmlGenerator
     $this->dateFormater->setPattern('EEEE dd MMMM YYYY'); // Exemple : "jeudi 20 février 2020"
   }
 
-  /**
-   *
-   * @return array{html: string, css: string}
-   */
-  public function generate(string $cssFilePath): array {
+  public function generate(): string {
     $this->generator->setStyle(
       file_get_contents(__DIR__ . "/style.css")
     );
@@ -105,9 +102,6 @@ class HtmlGenerator
       );
     };
 
-    return [
-      "css" => $this->generator->generateCssStyle(),
-      "html" => $this->generator->generateTabPageTemplate($cssFilePath),
-    ];
+    return $this->generator->generateTabPageTemplate();
   }
 }

@@ -1,7 +1,57 @@
 <!doctype html>
     <html>
       <head>
-        <link rel="stylesheet" type="text/css" href="style.css" />
+        <style>
+          .releve-compte-tableau {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  font-size: 1rem;
+}
+
+.releve-compte-tableau thead {
+  font-size: 0.8rem;
+}
+
+.releve-compte-tableau tr {
+  border-bottom: 1px solid rgb(192, 192, 192);
+}
+
+.releve-compte-tableau-contenu th {
+  font-weight: normal;
+  padding: 1px 3px;
+
+  font-size: 0.7rem;
+}
+
+.releve-compte-tableau-contenu tr:nth-child(odd) {
+  color: black !important;;
+  print-color-adjust: exact;
+}
+
+.releve-compte-tableau-contenu tr:nth-child(even) {
+  color: rgb(110, 110, 110) !important;;
+  print-color-adjust: exact;
+}
+
+.releve-compte-tableau .note, .releve-compte-tableau .recipient, .releve-compte-tableau .category {
+  text-align: left;
+}
+
+.releve-compte-tableau .debit, .releve-compte-tableau .credit, .releve-compte-tableau .balance {
+  text-align: right;
+}
+
+.releve-compte-titre {
+  font-size: 1.2rem;
+}
+
+.releve-compte-information {
+  font-size: 0.8rem;
+}
+
+        </style>
       </head>
       <body>
         <h1 class="releve-compte-titre">Relevé de "thomas - banque cc" - ACME</h1>

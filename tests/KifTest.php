@@ -12,7 +12,7 @@ final class KifTest extends TestCase
         $input = file_get_contents(__DIR__ . "/KifTest/input.qif");
         $output = file_get_contents(__DIR__ . "/KifTest/output.html");
 
-        $outputGenerated = (new Kif($input))->getHtml();
+        $outputGenerated = (new Kif($input))->generateHtml();
 
         $this->assertEquals(
             $output,

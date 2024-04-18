@@ -22,6 +22,10 @@ class HtmlGenerator
     $this->style = $style;
   }
 
+  private function getStyle(): string {
+    return $this->style;
+  }
+
   public function setTitle(string $title): void {
     $this->title = $title;
   }
@@ -64,11 +68,13 @@ class HtmlGenerator
     return $this->style;
   }
 
-  public function generateTabPageTemplate(string $cssFilePath): string {
+  public function generateTabPageTemplate(): string {
     return "<!doctype html>
     <html>
       <head>
-        <link rel=\"stylesheet\" type=\"text/css\" href=\"" . $cssFilePath . "\" />
+        <style>
+          ". $this->getStyle() ."
+        </style>
       </head>
       <body>
         <h1 class=\"releve-compte-titre\">". $this->title . "</h1>

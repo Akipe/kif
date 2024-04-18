@@ -3,30 +3,29 @@
 namespace Akipe\Kif;
 
 use Akipe\Kif\Parser\Parser;
+use Akipe\Kif\Entity\Account;
+use Akipe\Kif\Generator\Generator;
 use Akipe\Kif\Parser\Qif\QifParser;
-use Akipe\Kif\Generator\HtmlGenerator;
+use Akipe\Kif\Generator\Html\HtmlGenerator;
 
 class Kif
 {
   private Parser $parser;
-  private HtmlGenerator $generator;
+  private Generator $generator;
+  private Account $account;
 
-  public function __construct(
-    public readonly string $content,
-  ){
+  public function parseQif(string $content): self {
     $this->parser = new QifParser($content);
+    $this->account = $this->parser->getAccount();
 
-    $this->generator = new HtmlGenerator(
-        $this->parser->getAccount()
-    );
+    return $this;
   }
 
-  /**
-   *
-   * @param string $cssFilePath
-   * @return array{html: string, css: string}
-   */
-  public function getHtml(string $cssFilePath): array {
-    return $this->generator->generate($cssFilePath);
+  public function generateHtml(): string {
+    $this->generator = new HtmlGenerator(
+      $this->account,
+    );
+
+    return $this->generator->generate();
   }
 }
