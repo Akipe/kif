@@ -33,17 +33,17 @@ class QifTransactionParser
    */
   public function parse(): Transaction {
     return new Transaction(
-      $this->getDateAttribute(),
-      $this->getNoteAttribute(),
-      $this->getAmountAttribute(),
-      $this->getRecipientAttribute(),
-      $this->getCategoryAttribute(),
+      $this->parseDateAttribute(),
+      $this->parseNoteAttribute(),
+      $this->parseAmountAttribute(),
+      $this->parseRecipientAttribute(),
+      $this->parseCategoryAttribute(),
     );
   }
 
-  public function getAccountElement(): QifElementAccount {
+  public function parseAccountElement(): QifElementAccount {
     return new QifElementAccount(
-      $this->getAccountNameAttribute(),
+      $this->parseAccountNameAttribute(),
     );
   }
 
@@ -54,56 +54,60 @@ class QifTransactionParser
    * @return void
    */
   private function setLinesElement(string $element): void {
-    $lines = explode(
-      PHP_EOL,
-      $element,
-    );
+    $lines = explode(PHP_EOL, $element);
 
-    $this->lines = array_map(function ($line) { return trim($line); }, $lines);
+    $this->lines = array_map(
+      fn ($line) => trim($line),
+      $lines
+    );
   }
 
-  private function getDateAttribute(): DateTimeImmutable {
+  private function parseDateAttribute(): DateTimeImmutable {
     return DateTimeImmutable::createFromFormat(
       "d/m/Y",
-      $this->getGenericAttribute($this->lines, self::RULE_ATTRIBUTE_DATE)
+      $this->parseCommonRuleAttribute($this->lines, self::RULE_ATTRIBUTE_DATE)
     );
   }
 
-  private function getNoteAttribute(): string {
-    return $this->getGenericAttribute($this->lines, self::RULE_ATTRIBUTE_NOTE);
+  private function parseNoteAttribute(): string {
+    return $this->parseCommonRuleAttribute($this->lines, self::RULE_ATTRIBUTE_NOTE);
   }
 
-  private function getAmountAttribute(): float {
-    return $this->castMoney($this->getGenericAttribute($this->lines, self::RULE_ATTRIBUTE_AMOUNT));
+  private function parseAmountAttribute(): float {
+    return $this->castMoney($this->parseCommonRuleAttribute($this->lines, self::RULE_ATTRIBUTE_AMOUNT));
   }
 
-  private function getRecipientAttribute(): string {
-    return $this->getGenericAttribute($this->lines, self::RULE_ATTRIBUTE_RECIPIENT);
+  private function parseRecipientAttribute(): string {
+    return $this->parseCommonRuleAttribute($this->lines, self::RULE_ATTRIBUTE_RECIPIENT);
   }
 
-  private function getCategoryAttribute(): string {
-    $category = $this->getGenericAttribute($this->lines, self::RULE_ATTRIBUTE_CATEGORY);
+  private function parseCategoryAttribute(): string {
+    $category = $this->parseCommonRuleAttribute($this->lines, self::RULE_ATTRIBUTE_CATEGORY);
 
     if ($category == self::VALUE_CATEGORY_EMPTY) return "";
 
     return $category;
   }
 
-  private function getAccountNameAttribute(): string {
-    $category = $this->getGenericAttribute($this->lines, self::RULE_ATTRIBUTE_ACCOUNT_NAME);
+  private function parseAccountNameAttribute(): string {
+    $category = $this->parseCommonRuleAttribute($this->lines, self::RULE_ATTRIBUTE_ACCOUNT_NAME);
 
     if ($category == self::RULE_ATTRIBUTE_ACCOUNT_NAME) return "";
 
     return $category;
   }
 
-  private function getGenericAttribute(
+  private function parseCommonRuleAttribute(
     array $attributes,
     string $regexRule
   ): string {
     $attributsFound = preg_grep($regexRule, $attributes);
 
-    return strtolower(substr(array_shift($attributsFound), 1));
+    return strtolower($this->getAttributValue(array_shift($attributsFound), 1));
+  }
+
+  private function getAttributValue(?string $qifLine) {
+    return substr($qifLine, 1);
   }
 
   private function castMoney(string $money): float {

@@ -86,7 +86,7 @@ class QifParser implements Parser
       new QifTransactionParser(
         $this->elements[$this->getFirstElementAccountIndex()]
       )
-    )->getAccountElement();
+    )->parseAccountElement();
   }
 
   /**
