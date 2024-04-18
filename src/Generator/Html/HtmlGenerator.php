@@ -13,13 +13,18 @@ class HtmlGenerator implements Generator
   private Html $generator;
   private IntlDateFormatter $dateFormater;
   private Configuration $configuration;
+  private Account $account;
 
-  public function __construct(
-    public readonly Account $account,
-  ){
+  public function __construct() {
     $this->generator = new Html();
     $this->setDateFormater();
     $this->configuration = new Configuration();
+  }
+
+  public function load(Account $account): self {
+    $this->account = $account;
+
+    return $this;
   }
 
   private function setDateFormater(): void {

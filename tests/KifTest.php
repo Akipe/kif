@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+use Akipe\Kif\Generator\Html\HtmlGenerator;
 use Akipe\Kif\Kif;
+use Akipe\Kif\Parser\Qif\QifParser;
 use PHPUnit\Framework\TestCase;
 
 final class KifTest extends TestCase
@@ -14,9 +16,12 @@ final class KifTest extends TestCase
 
         $kif = new Kif();
 
+        $qifParser = new QifParser($qif);
+        $htmlGenerator = new HtmlGenerator();
+
         $htmlGenerated = $kif
-          ->parseQif($qif)
-          ->generateHtml();
+          ->parse($qifParser)
+          ->generateView($htmlGenerator);
 
         $this->assertEquals($htmlExpected, $htmlGenerated);
     }
