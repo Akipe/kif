@@ -44,24 +44,41 @@ abstract class QifElementCommonParser
   protected function parseDateAttribute(): DateTimeInterface {
     return DateTimeImmutable::createFromFormat(
       "d/m/Y",
-      $this->parseCommonRuleAttribute($this->lines, self::RULE_ATTRIBUTE_DATE)
+      $this->parseCommonRuleAttribute(
+        $this->lines,
+        self::RULE_ATTRIBUTE_DATE
+      )
     );
   }
 
   protected function parseNoteAttribute(): string {
-    return $this->parseCommonRuleAttribute($this->lines, self::RULE_ATTRIBUTE_NOTE);
+    return $this->parseCommonRuleAttribute(
+      $this->lines,
+      self::RULE_ATTRIBUTE_NOTE
+    );
   }
 
   protected function parseAmountAttribute(): float {
-    return $this->castMoney($this->parseCommonRuleAttribute($this->lines, self::RULE_ATTRIBUTE_AMOUNT));
+    return $this->castMoney(
+      $this->parseCommonRuleAttribute(
+        $this->lines,
+        self::RULE_ATTRIBUTE_AMOUNT
+      )
+    );
   }
 
   protected function parseRecipientAttribute(): string {
-    return $this->parseCommonRuleAttribute($this->lines, self::RULE_ATTRIBUTE_RECIPIENT);
+    return $this->parseCommonRuleAttribute(
+      $this->lines,
+      self::RULE_ATTRIBUTE_RECIPIENT
+    );
   }
 
   protected function parseCategoryAttribute(): string {
-    $category = $this->parseCommonRuleAttribute($this->lines, self::RULE_ATTRIBUTE_CATEGORY);
+    $category = $this->parseCommonRuleAttribute(
+      $this->lines,
+      self::RULE_ATTRIBUTE_CATEGORY
+    );
 
     if ($category == self::VALUE_CATEGORY_EMPTY) return "";
 
@@ -69,7 +86,10 @@ abstract class QifElementCommonParser
   }
 
   protected function parseAccountNameAttribute(): string {
-    $category = $this->parseCommonRuleAttribute($this->lines, self::RULE_ATTRIBUTE_ACCOUNT_NAME);
+    $category = $this->parseCommonRuleAttribute(
+      $this->lines,
+      self::RULE_ATTRIBUTE_ACCOUNT_NAME
+    );
 
     if ($category == self::RULE_ATTRIBUTE_ACCOUNT_NAME) return "";
 
@@ -82,7 +102,9 @@ abstract class QifElementCommonParser
   ): string {
     $attributsFound = preg_grep($regexRule, $attributes);
 
-    return strtolower($this->getAttributValue(reset($attributsFound)));
+    return strtolower(
+      $this->getAttributValue(reset($attributsFound))
+    );
   }
 
   private function getAttributValue(?string $qifLine) {
