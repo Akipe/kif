@@ -1,6 +1,6 @@
 <?php
 
-namespace Akipe\Kif\Parser\Qif;
+namespace Akipe\Kif\Parser\Qif\ElementParser;
 
 use DateTimeImmutable;
 use DateTimeInterface;

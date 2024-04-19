@@ -4,11 +4,11 @@ namespace Akipe\Kif\Parser\Qif;
 
 use Akipe\Kif\Parser\Parser;
 use Akipe\Kif\Entity\Account;
-use Akipe\Kif\Parser\Qif\QifTransactionParser;
-use Akipe\Kif\Parser\Qif\QifOpeningAccountParser;
-use Akipe\Kif\Parser\Qif\QifAccountInformationParser;
-use Akipe\Kif\Parser\Qif\Element\QifOpeningElement;
-use Akipe\Kif\Parser\Qif\Element\QifAccountInformationElement;
+use Akipe\Kif\Parser\Qif\Element\QifOpening;
+use Akipe\Kif\Parser\Qif\ElementParser\QifTransactionParser;
+use Akipe\Kif\Parser\Qif\Element\QifAccountInformation;
+use Akipe\Kif\Parser\Qif\ElementParser\QifOpeningAccountParser;
+use Akipe\Kif\Parser\Qif\ElementParser\QifAccountInformationParser;
 
 class QifParser implements Parser
 {
@@ -84,7 +84,7 @@ class QifParser implements Parser
     return 0;
   }
 
-  private function getOpeningAccountElement(): QifOpeningElement {
+  private function getOpeningAccountElement(): QifOpening {
     return (
       new QifOpeningAccountParser(
         $this->elements[$this->getOpeningAccountElementIndex()]
@@ -92,7 +92,7 @@ class QifParser implements Parser
     )->parse();
   }
 
-  private function getAccountElement(): QifAccountInformationElement {
+  private function getAccountElement(): QifAccountInformation {
     return (
       new QifAccountInformationParser(
         $this->elements[$this->getFirstElementAccountIndex()]
