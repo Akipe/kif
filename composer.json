@@ -1,26 +1,29 @@
 {
-    "name": "akipe/kif",
-    "license": "GPLv3",
-    "autoload": {
-        "psr-4": {
-            "Akipe\\Kif\\": "src/",
-            "Akipe\\Lib\\": "lib/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Julien Milletre Akipe",
-            "email": "code.julien@milletre.fr"
-        }
-    ],
-    "require-dev": {
-        "phpunit/phpunit": "^9"
-    },
-    "scripts": {
-        "test": "./vendor/bin/phpunit tests",
-        "example": "php example/app.php"
-    },
-    "require": {
-        "symfony/dotenv": "^7.0"
+  "name": "akipe/kif",
+  "license": "GPLv3",
+  "autoload": {
+    "psr-4": {
+      "Akipe\\Kif\\": "src/",
+      "Akipe\\Lib\\": "lib/"
     }
+  },
+  "authors": [
+    {
+      "name": "Julien Milletre Akipe",
+      "email": "code.julien@milletre.fr"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "^9"
+  },
+  "scripts": {
+    "test": "./vendor/bin/phpunit tests",
+    "example": "php example/app.php"
+  },
+  "require": {
+    "php": "^8.3",
+    "ext-intl": "^8.3",
+    "ext-xml": "^8.3",
+    "symfony/dotenv": "^7.0"
+  }
 }
