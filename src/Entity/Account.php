@@ -7,9 +7,13 @@ use DateTimeInterface;
 
 class Account
 {
-  /** @var float[] */
-  public readonly array $balanceTransactions;
-
+  /**
+   *
+   * @param string $name
+   * @param float $amountStart
+   * @param Transaction[] $transactions
+   * @return void
+   */
   public function __construct(
     public readonly string $name,
     public readonly float $amountStart,

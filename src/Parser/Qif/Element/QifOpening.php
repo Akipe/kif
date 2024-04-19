@@ -8,6 +8,6 @@ class QifOpening
 {
   public function __construct(
     public readonly DateTimeInterface $date,
-    public readonly string $amount,
+    public readonly float $amount,
   ){}
 }

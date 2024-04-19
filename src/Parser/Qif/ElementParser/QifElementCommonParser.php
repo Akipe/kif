@@ -15,12 +15,13 @@ abstract class QifElementCommonParser
   public const RULE_ATTRIBUTE_CATEGORY = '/^L/i';
   public const RULE_ATTRIBUTE_ACCOUNT_NAME = '/^N/i';
   public const VALUE_CATEGORY_EMPTY = "(null)";
+  public const DATE_FORMAT = 'd/m/Y';
 
   /** @var string[] */
   private array $lines;
 
   public function __construct(
-    private readonly string $element,
+    string $element,
   )
   {
     $this->setLinesElement($element);
@@ -43,7 +44,7 @@ abstract class QifElementCommonParser
 
   protected function parseDateAttribute(): DateTimeInterface {
     return DateTimeImmutable::createFromFormat(
-      "d/m/Y",
+      self::DATE_FORMAT,
       $this->parseCommonRuleAttribute(
         $this->lines,
         self::RULE_ATTRIBUTE_DATE
@@ -96,6 +97,12 @@ abstract class QifElementCommonParser
     return $category;
   }
 
+  /**
+   *
+   * @param string[] $attributes
+   * @param string $regexRule
+   * @return string
+   */
   private function parseCommonRuleAttribute(
     array $attributes,
     string $regexRule
@@ -107,7 +114,7 @@ abstract class QifElementCommonParser
     );
   }
 
-  private function getAttributValue(?string $qifLine) {
+  private function getAttributValue(?string $qifLine): string {
     return substr($qifLine, 1);
   }
 

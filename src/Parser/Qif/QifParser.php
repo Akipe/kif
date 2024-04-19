@@ -4,9 +4,10 @@ namespace Akipe\Kif\Parser\Qif;
 
 use Akipe\Kif\Parser\Parser;
 use Akipe\Kif\Entity\Account;
+use Akipe\Kif\Entity\Transaction;
 use Akipe\Kif\Parser\Qif\Element\QifOpening;
-use Akipe\Kif\Parser\Qif\ElementParser\QifTransactionParser;
 use Akipe\Kif\Parser\Qif\Element\QifAccountInformation;
+use Akipe\Kif\Parser\Qif\ElementParser\QifTransactionParser;
 use Akipe\Kif\Parser\Qif\ElementParser\QifOpeningAccountParser;
 use Akipe\Kif\Parser\Qif\ElementParser\QifAccountInformationParser;
 
@@ -18,7 +19,7 @@ class QifParser implements Parser
   public const RULE_ACCOUNT_BASE = '';
 
   /** @var string[] */
-  private readonly array $elements;
+  private array $elements;
 
   public function __construct(
     private string $content,
@@ -29,7 +30,7 @@ class QifParser implements Parser
   public function getAccount(): Account {
     return new Account(
       $this->getAccountElement()->name,
-      $this->getOpeningAccountElement()->amount,
+      floatval($this->getOpeningAccountElement()->amount),
       $this->getTransactions(),
     );
   }
@@ -117,7 +118,7 @@ class QifParser implements Parser
   private function setElements(): void {
     $this->elements = array_filter(
       explode(QifTransactionParser::ELEMENT_SEPARATOR, trim($this->content)),
-      fn($line) => !is_null($line) && trim($line) !== ""
+      fn($line) => !empty($line) && trim($line) !== ""
     );
   }
 
