@@ -15,8 +15,6 @@ class QifParser implements Parser
 {
     public const INFO_OPENING_TRANSACTION_ELEMENT_RULE = "!Type:Bank";
     public const FIRST_ELEMENT_ACCOUNT_RULE = "!Account";
-    public const RULE_ACCOUNT_NAME = '';
-    public const RULE_ACCOUNT_BASE = '';
 
   /** @var string[] */
     private array $elements;
