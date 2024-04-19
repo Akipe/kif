@@ -11,13 +11,14 @@ class QifTransactionParser extends QifElementCommonParser
    *
    * @return Transaction
    */
-  public function parse(): Transaction {
-    return new Transaction(
-      $this->parseDateAttribute(),
-      $this->parseNoteAttribute(),
-      $this->parseAmountAttribute(),
-      $this->parseRecipientAttribute(),
-      $this->parseCategoryAttribute(),
-    );
-  }
+    public function parse(): Transaction
+    {
+        return new Transaction(
+            $this->parseDateAttribute(),
+            $this->parseNoteAttribute(),
+            $this->parseAmountAttribute(),
+            $this->parseRecipientAttribute(),
+            $this->parseCategoryAttribute(),
+        );
+    }
 }

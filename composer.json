@@ -15,12 +15,15 @@
   ],
   "require-dev": {
     "phpunit/phpunit": "^9",
-    "phpstan/phpstan": "^1.10"
+    "phpstan/phpstan": "^1.10",
+    "squizlabs/php_codesniffer": "*"
   },
   "scripts": {
-    "test": "./vendor/bin/phpunit tests",
+    "test": "vendor/bin/phpunit tests",
     "example": "php example/app.php",
-    "phpstan": "vendor/bin/phpstan analyse src tests --level 9"
+    "phpstan": "vendor/bin/phpstan analyse src tests --level 9",
+    "check-standard": "vendor/bin/phpcs --standard=PSR12 ./src ./tests",
+    "fix-standard": "vendor/bin/phpcbf --standard=PSR12 ./src ./tests"
   },
   "require": {
     "php": "^8.3",

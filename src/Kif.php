@@ -8,17 +8,19 @@ use Akipe\Kif\ViewGenerator\ViewGenerator;
 
 class Kif
 {
-  private Account $account;
+    private Account $account;
 
-  public function parse(Parser $parser): self {
-    $this->account = $parser->getAccount();
+    public function parse(Parser $parser): self
+    {
+        $this->account = $parser->getAccount();
 
-    return $this;
-  }
+        return $this;
+    }
 
-  public function generateView(ViewGenerator $viewGenerator): string {
-    return $viewGenerator
-      ->load($this->account)
-      ->generate();
-  }
+    public function generateView(ViewGenerator $viewGenerator): string
+    {
+        return $viewGenerator
+        ->load($this->account)
+        ->generate();
+    }
 }

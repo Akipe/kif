@@ -6,5 +6,5 @@ use Akipe\Kif\Entity\Account;
 
 interface Parser
 {
-  public function getAccount(): Account;
+    public function getAccount(): Account;
 }
