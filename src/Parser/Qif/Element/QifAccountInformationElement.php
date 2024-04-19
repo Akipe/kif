@@ -2,7 +2,7 @@
 
 namespace Akipe\Kif\Parser\Qif\Element;
 
-class QifAccountElement
+class QifAccountInformationElement
 {
   public function __construct(
     public readonly string $name,
