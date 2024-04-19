@@ -1,8 +1,8 @@
 <?php
 
-
 namespace Akipe\Kif\Parser\Qif;
 
+use Akipe\Kif\Parser\Qif\QifElementCommonParser;
 use Akipe\Kif\Parser\Qif\Element\QifAccountInformationElement;
 
 class QifAccountInformationParser extends QifElementCommonParser
