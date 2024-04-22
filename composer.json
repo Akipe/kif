@@ -21,9 +21,9 @@
   "scripts": {
     "test": "vendor/bin/phpunit tests",
     "example": "php example/app.php",
-    "phpstan": "vendor/bin/phpstan analyse src tests --level 9",
-    "check-standard": "vendor/bin/phpcs --standard=PSR12 ./src ./tests",
-    "fix-standard": "vendor/bin/phpcbf --standard=PSR12 ./src ./tests"
+    "static-analyze": "vendor/bin/phpstan analyse src lib tests --level 9",
+    "check-standard": "vendor/bin/phpcs --standard=PSR12 ./src ./lib ./tests",
+    "fix-standard": "vendor/bin/phpcbf --standard=PSR12 ./src ./lib ./tests"
   },
   "require": {
     "php": "^8.3",
