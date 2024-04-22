@@ -25,6 +25,10 @@ final class KifTest extends TestCase
 
         $htmlExpected = file_get_contents(self::EXPECTED_RESULT_FILE_PATH);
 
+        if (empty($htmlExpected)) {
+            throw new Exception("Can't load html result data at " . self::EXPECTED_RESULT_FILE_PATH);
+        }
+
         $kif = new Kif();
 
         $qifParser = new QifParser($qif);
