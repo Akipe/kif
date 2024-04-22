@@ -42,16 +42,18 @@ class HtmlGenerator implements ViewGenerator
 
     public function generate(): string
     {
-        if (empty($cssContent = file_get_contents(__DIR__ . "/style.css"))) {
+        $cssContent = file_get_contents(__DIR__ . "/style.css");
+
+        if (empty($cssContent)) {
             throw new Exception(__DIR__ . "/style.css does not exist or does not contain data");
         }
 
         $this->generator->setStyle($cssContent);
 
-        $startDateFormated = $this->dateFormater->format(
+        $startDateFormatted = $this->dateFormater->format(
             $this->account->getFirstTransactionDate()
         );
-        $endDateFormated = $this->dateFormater->format(
+        $endDateFormatted = $this->dateFormater->format(
             $this->account->getLastTransactionDate()
         );
 
@@ -59,7 +61,7 @@ class HtmlGenerator implements ViewGenerator
             "Relevé de \"" . $this->account->name . "\" - " . $this->configuration->getStructureName()
         );
         $this->generator->setInformation(
-            "Du " . $startDateFormated . " au " . $endDateFormated .
+            "Du " . $startDateFormatted . " au " . $endDateFormatted .
             " avec un solde de " . $this->account->amountStart . " € à " . $this->account->getClosingAmount() . " €"
         );
 

@@ -18,7 +18,7 @@ abstract class QifNodeParser
     public const VALUE_CATEGORY_EMPTY = "(null)";
     public const DATE_FORMAT = 'd/m/Y';
 
-  /** @var string[] */
+    /** @var string[] */
     private array $lines;
 
     public function __construct(
@@ -27,12 +27,12 @@ abstract class QifNodeParser
         $this->setNodeLines($node);
     }
 
-  /**
-   * Get all lines of a node
-   *
-   * @param string $node the node without formating
-   * @return void
-   */
+    /**
+     * Get all lines of a node
+     *
+     * @param string $node the node without formating
+     * @return void
+     */
     private function setNodeLines(string $node): void
     {
         $lines = explode(PHP_EOL, $node);
@@ -119,12 +119,12 @@ abstract class QifNodeParser
         return $category;
     }
 
-  /**
-   *
-   * @param string[] $lines
-   * @param string $regexRule
-   * @return string
-   */
+    /**
+     *
+     * @param string[] $lines
+     * @param string $regexRule
+     * @return string
+     */
     private function parsePatternRuleAttribute(
         array $lines,
         string $regexRule
