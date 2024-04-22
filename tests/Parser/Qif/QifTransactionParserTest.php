@@ -29,8 +29,7 @@ final class QifTransactionParserTest extends TestCase
             "",
         );
 
-        $parser = new QifTransactionParser($input);
-        $transactionParsed = $parser->parse();
+        $transactionParsed = (new QifTransactionParser($input))->parse();
 
         $this->assertEquals($transactionExpected, $transactionParsed);
     }

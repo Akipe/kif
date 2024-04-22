@@ -51,44 +51,42 @@ final class QifParserTest extends TestCase
             ^
         ";
 
-        $listTransactions = [];
-        $listTransactions[] = new Transaction(
-            DateTimeFormatGeneration::get("d/m/Y", "22/01/2011"),
-            "p",
-            200.00,
-            "virement",
-            "",
-        );
-        $listTransactions[] = new Transaction(
-            DateTimeFormatGeneration::get("d/m/Y", "27/09/2011"),
-            "p",
-            -29.00,
-            "caffe",
-            "",
-        );
-        $listTransactions[] = new Transaction(
-            DateTimeFormatGeneration::get("d/m/Y", "30/09/2011"),
-            "p",
-            -27.40,
-            "sweety",
-            "",
-        );
-        $listTransactions[] = new Transaction(
-            DateTimeFormatGeneration::get("d/m/Y", "03/10/2011"),
-            "p",
-            -60.10,
-            "pharmacie",
-            "",
-        );
-
         $accountExpected = new Account(
             "thomas - banque cc",
             0.0,
-            $listTransactions,
+            [
+                new Transaction(
+                    DateTimeFormatGeneration::get("d/m/Y", "22/01/2011"),
+                    "p",
+                    200.00,
+                    "virement",
+                    "",
+                ),
+                new Transaction(
+                    DateTimeFormatGeneration::get("d/m/Y", "27/09/2011"),
+                    "p",
+                    -29.00,
+                    "caffe",
+                    "",
+                ),
+                new Transaction(
+                    DateTimeFormatGeneration::get("d/m/Y", "30/09/2011"),
+                    "p",
+                    -27.40,
+                    "sweety",
+                    "",
+                ),
+                new Transaction(
+                    DateTimeFormatGeneration::get("d/m/Y", "03/10/2011"),
+                    "p",
+                    -60.10,
+                    "pharmacie",
+                    "",
+                ),
+            ],
         );
 
-        $parser = new QifParser($input);
-        $account = $parser->getAccount();
+        $account = (new QifParser($input))->getAccount();
 
         $this->assertEquals($accountExpected, $account);
     }
