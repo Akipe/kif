@@ -1,13 +1,13 @@
 <?php
 
-namespace Akipe\Kif\Parser\Qif\ElementParser;
+namespace Akipe\Kif\Parser\Qif\NodeParser;
 
 use Akipe\Kif\Entity\Transaction;
 
-class QifTransactionParser extends QifElementCommonParser
+class QifTransactionParser extends QifNodeParser
 {
   /**
-   * Get parsed element with all his attributes
+   * Get parsed node with all his attributes
    *
    * @return Transaction
    */

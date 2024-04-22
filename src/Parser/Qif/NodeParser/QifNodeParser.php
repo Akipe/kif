@@ -1,14 +1,14 @@
 <?php
 
-namespace Akipe\Kif\Parser\Qif\ElementParser;
+namespace Akipe\Kif\Parser\Qif\NodeParser;
 
 use DateTimeImmutable;
 use DateTimeInterface;
 use Exception;
 
-abstract class QifElementCommonParser
+abstract class QifNodeParser
 {
-    public const ELEMENT_SEPARATOR = "^";
+    public const NODE_SEPARATOR = "^";
     public const RULE_ATTRIBUTE_DATE = '/^D/i';
     public const RULE_ATTRIBUTE_NOTE = '/^M/i';
     public const RULE_ATTRIBUTE_AMOUNT = '/^T/i';
@@ -22,20 +22,20 @@ abstract class QifElementCommonParser
     private array $lines;
 
     public function __construct(
-        string $element,
+        string $node,
     ) {
-        $this->setLinesElement($element);
+        $this->setNodeLines($node);
     }
 
   /**
-   * Get all lines of an element
+   * Get all lines of a node
    *
-   * @param string $element the element without formating
+   * @param string $node the node without formating
    * @return void
    */
-    private function setLinesElement(string $element): void
+    private function setNodeLines(string $node): void
     {
-        $lines = explode(PHP_EOL, $element);
+        $lines = explode(PHP_EOL, $node);
 
         $this->lines = array_filter(array_map(
             fn ($line) => trim($line),
@@ -141,11 +141,11 @@ abstract class QifElementCommonParser
         }
 
         return strtolower(
-            $this->getAttributValue(reset($attributsFound))
+            $this->getAttributeValue(reset($attributsFound))
         );
     }
 
-    private function getAttributValue(string $qifLine): string
+    private function getAttributeValue(string $qifLine): string
     {
         return substr($qifLine, 1);
     }

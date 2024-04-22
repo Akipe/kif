@@ -7,7 +7,7 @@ namespace Akipe\Kif\Test\Qif\QifTransactionParserTest;
 use PHPUnit\Framework\TestCase;
 use Akipe\Kif\Entity\Transaction;
 use Akipe\Lib\Test\DateTimeFormatGeneration;
-use Akipe\Kif\Parser\Qif\ElementParser\QifTransactionParser;
+use Akipe\Kif\Parser\Qif\NodeParser\QifTransactionParser;
 
 final class QifTransactionParserTest extends TestCase
 {

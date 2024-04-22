@@ -1,10 +1,10 @@
 <?php
 
-namespace Akipe\Kif\Parser\Qif\ElementParser;
+namespace Akipe\Kif\Parser\Qif\NodeParser;
 
-use Akipe\Kif\Parser\Qif\Element\QifAccountInformation;
+use Akipe\Kif\Parser\Qif\Node\QifAccountInformation;
 
-class QifAccountInformationParser extends QifElementCommonParser
+class QifAccountInformationParser extends QifNodeParser
 {
     public function parse(): QifAccountInformation
     {
