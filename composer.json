@@ -11,6 +11,7 @@
   "require": {
     "php": "^8.3",
     "ext-intl": "^8.3",
+    "ext-libxml": "^8.3",
     "ext-xml": "^8.3",
     "symfony/dotenv": "^7.0"
   },
@@ -39,8 +40,8 @@
     "check-standard": "vendor/bin/phpcs",
     "check-static-analyze": "vendor/bin/phpstan",
     "example": "php example/app.php",
+    "fix-composer": "composer normalize --no-update-lock",
     "fix-standard": "vendor/bin/phpcbf",
-    "fix-standard-composer": "composer normalize --no-update-lock'",
     "test": "vendor/bin/phpunit tests"
   }
 }
