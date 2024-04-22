@@ -1,0 +1,7 @@
+parameters:
+    level: 9
+    paths:
+       - example
+       - lib
+       - src
+       - tests

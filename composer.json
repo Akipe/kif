@@ -1,34 +1,46 @@
 {
   "name": "akipe/kif",
-  "license": "GPLv3",
-  "autoload": {
-    "psr-4": {
-      "Akipe\\Kif\\": "src/",
-      "Akipe\\Lib\\": "lib/"
-    }
-  },
+  "description": "Application de génération de relevé de compte simple, agréable et imprimable. ",
+  "license": "GPL-3.0-or-later",
   "authors": [
     {
       "name": "Julien Milletre Akipe",
       "email": "code.julien@milletre.fr"
     }
   ],
-  "require-dev": {
-    "phpunit/phpunit": "^9",
-    "phpstan/phpstan": "^1.10",
-    "squizlabs/php_codesniffer": "*"
-  },
-  "scripts": {
-    "test": "vendor/bin/phpunit tests",
-    "example": "php example/app.php",
-    "static-analyze": "vendor/bin/phpstan analyse src lib tests --level 9",
-    "check-standard": "vendor/bin/phpcs --standard=PSR12 ./src ./lib ./tests",
-    "fix-standard": "vendor/bin/phpcbf --standard=PSR12 ./src ./lib ./tests"
-  },
   "require": {
     "php": "^8.3",
     "ext-intl": "^8.3",
     "ext-xml": "^8.3",
     "symfony/dotenv": "^7.0"
+  },
+  "require-dev": {
+    "ergebnis/composer-normalize": "^2.42",
+    "phpro/grumphp-shim": "^2.5",
+    "phpstan/phpstan": "^1.10",
+    "phpunit/phpunit": "^9",
+    "squizlabs/php_codesniffer": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Akipe\\Kif\\": "src/",
+      "Akipe\\Kif\\Test\\": "tests/",
+      "Akipe\\Lib\\": "lib/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "ergebnis/composer-normalize": true,
+      "phpro/grumphp-shim": true
+    }
+  },
+  "scripts": {
+    "check-all": "vendor/bin/grumphp run",
+    "check-standard": "vendor/bin/phpcs",
+    "check-static-analyze": "vendor/bin/phpstan",
+    "example": "php example/app.php",
+    "fix-standard": "vendor/bin/phpcbf",
+    "fix-standard-composer": "composer normalize --no-update-lock'",
+    "test": "vendor/bin/phpunit tests"
   }
 }

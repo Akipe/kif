@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
+namespace Akipe\Kif\Test\Qif\QifTransactionParserTest;
+
 use PHPUnit\Framework\TestCase;
 use Akipe\Kif\Entity\Transaction;
+use Akipe\Lib\Test\DateTimeFormatGeneration;
 use Akipe\Kif\Parser\Qif\ElementParser\QifTransactionParser;
 
 final class QifTransactionParserTest extends TestCase
@@ -17,8 +20,9 @@ final class QifTransactionParserTest extends TestCase
             PSWEETY
             L(NULL)
         ";
+
         $transactionExpected = new Transaction(
-            DateTimeImmutable::createFromFormat("d/m/Y", "30/09/2011"),
+            DateTimeFormatGeneration::get("d/m/Y", "30/09/2011"),
             "p",
             -27.40,
             "sweety",

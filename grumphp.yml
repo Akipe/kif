@@ -1,0 +1,12 @@
+grumphp:
+    tasks:
+        composer: ~
+        composer_normalize: ~
+        phpcs: ~
+        phpstan:
+            autoload_file: ~
+            configuration: "./phpstan.neon"
+            level: 9
+            triggered_by: ['php']
+        phpunit: ~
+        securitychecker_composeraudit: ~

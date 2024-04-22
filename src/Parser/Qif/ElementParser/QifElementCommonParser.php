@@ -4,6 +4,7 @@ namespace Akipe\Kif\Parser\Qif\ElementParser;
 
 use DateTimeImmutable;
 use DateTimeInterface;
+use Exception;
 
 abstract class QifElementCommonParser
 {
@@ -44,18 +45,29 @@ abstract class QifElementCommonParser
 
     protected function parseDateAttribute(): DateTimeInterface
     {
-        return DateTimeImmutable::createFromFormat(
+        $dateParsed = DateTimeImmutable::createFromFormat(
             self::DATE_FORMAT,
-            $this->parseCommonRuleAttribute(
+            $this->parsePatternRuleAttribute(
                 $this->lines,
                 self::RULE_ATTRIBUTE_DATE
             )
         );
+
+        if (empty($dateParsed)) {
+            throw new Exception(
+                "Date can't be parsed with the rule " .
+                self::RULE_ATTRIBUTE_DATE .
+                " for node : " . PHP_EOL .
+                implode(PHP_EOL, $this->lines)
+            );
+        }
+
+        return $dateParsed;
     }
 
     protected function parseNoteAttribute(): string
     {
-        return $this->parseCommonRuleAttribute(
+        return $this->parsePatternRuleAttribute(
             $this->lines,
             self::RULE_ATTRIBUTE_NOTE
         );
@@ -64,7 +76,7 @@ abstract class QifElementCommonParser
     protected function parseAmountAttribute(): float
     {
         return $this->castMoney(
-            $this->parseCommonRuleAttribute(
+            $this->parsePatternRuleAttribute(
                 $this->lines,
                 self::RULE_ATTRIBUTE_AMOUNT
             )
@@ -73,7 +85,7 @@ abstract class QifElementCommonParser
 
     protected function parseRecipientAttribute(): string
     {
-        return $this->parseCommonRuleAttribute(
+        return $this->parsePatternRuleAttribute(
             $this->lines,
             self::RULE_ATTRIBUTE_RECIPIENT
         );
@@ -81,7 +93,7 @@ abstract class QifElementCommonParser
 
     protected function parseCategoryAttribute(): string
     {
-        $category = $this->parseCommonRuleAttribute(
+        $category = $this->parsePatternRuleAttribute(
             $this->lines,
             self::RULE_ATTRIBUTE_CATEGORY
         );
@@ -95,7 +107,7 @@ abstract class QifElementCommonParser
 
     protected function parseAccountNameAttribute(): string
     {
-        $category = $this->parseCommonRuleAttribute(
+        $category = $this->parsePatternRuleAttribute(
             $this->lines,
             self::RULE_ATTRIBUTE_ACCOUNT_NAME
         );
@@ -109,22 +121,31 @@ abstract class QifElementCommonParser
 
   /**
    *
-   * @param string[] $attributes
+   * @param string[] $lines
    * @param string $regexRule
    * @return string
    */
-    private function parseCommonRuleAttribute(
-        array $attributes,
+    private function parsePatternRuleAttribute(
+        array $lines,
         string $regexRule
     ): string {
-        $attributsFound = preg_grep($regexRule, $attributes);
+        $attributsFound = preg_grep($regexRule, $lines);
+
+        if (empty($attributsFound)) {
+            throw new Exception(
+                "No attributs found with the rule " .
+                $regexRule .
+                " in lines " .
+                implode(PHP_EOL, $lines)
+            );
+        }
 
         return strtolower(
             $this->getAttributValue(reset($attributsFound))
         );
     }
 
-    private function getAttributValue(?string $qifLine): string
+    private function getAttributValue(string $qifLine): string
     {
         return substr($qifLine, 1);
     }

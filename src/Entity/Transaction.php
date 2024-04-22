@@ -32,6 +32,6 @@ class Transaction
 
     public function getBalance(): float
     {
-        return $this->balance;
+        return $this->balance ?? 0.0;
     }
 }

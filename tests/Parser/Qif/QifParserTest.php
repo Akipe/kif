@@ -2,10 +2,13 @@
 
 declare(strict_types=1);
 
+namespace Akipe\Kif\Test\Qif\QifParserTest;
+
 use Akipe\Kif\Entity\Account;
 use PHPUnit\Framework\TestCase;
 use Akipe\Kif\Entity\Transaction;
 use Akipe\Kif\Parser\Qif\QifParser;
+use Akipe\Lib\Test\DateTimeFormatGeneration;
 
 final class QifParserTest extends TestCase
 {
@@ -50,28 +53,28 @@ final class QifParserTest extends TestCase
 
         $listTransactions = [];
         $listTransactions[] = new Transaction(
-            DateTimeImmutable::createFromFormat("d/m/Y", "22/01/2011"),
+            DateTimeFormatGeneration::get("d/m/Y", "22/01/2011"),
             "p",
             200.00,
             "virement",
             "",
         );
         $listTransactions[] = new Transaction(
-            DateTimeImmutable::createFromFormat("d/m/Y", "27/09/2011"),
+            DateTimeFormatGeneration::get("d/m/Y", "27/09/2011"),
             "p",
             -29.00,
             "caffe",
             "",
         );
         $listTransactions[] = new Transaction(
-            DateTimeImmutable::createFromFormat("d/m/Y", "30/09/2011"),
+            DateTimeFormatGeneration::get("d/m/Y", "30/09/2011"),
             "p",
             -27.40,
             "sweety",
             "",
         );
         $listTransactions[] = new Transaction(
-            DateTimeImmutable::createFromFormat("d/m/Y", "03/10/2011"),
+            DateTimeFormatGeneration::get("d/m/Y", "03/10/2011"),
             "p",
             -60.10,
             "pharmacie",

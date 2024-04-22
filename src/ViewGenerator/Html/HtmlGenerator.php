@@ -7,6 +7,7 @@ use Akipe\Kif\Entity\Account;
 use Akipe\Kif\Environment\Configuration;
 use Akipe\Lib\Html\HtmlGenerator as Html;
 use Akipe\Kif\ViewGenerator\ViewGenerator;
+use Exception;
 
 class HtmlGenerator implements ViewGenerator
 {
@@ -41,9 +42,11 @@ class HtmlGenerator implements ViewGenerator
 
     public function generate(): string
     {
-        $this->generator->setStyle(
-            file_get_contents(__DIR__ . "/style.css")
-        );
+        if (empty($cssContent = file_get_contents(__DIR__ . "/style.css"))) {
+            throw new Exception(__DIR__ . "/style.css does not exist or does not contain data");
+        }
+
+        $this->generator->setStyle($cssContent);
 
         $startDateFormated = $this->dateFormater->format(
             $this->account->getFirstTransactionDate()
@@ -56,16 +59,19 @@ class HtmlGenerator implements ViewGenerator
             "Relevé de \"" . $this->account->name . "\" - " . $this->configuration->getStructureName()
         );
         $this->generator->setInformation(
-            "Du " . $startDateFormated . " au " . $endDateFormated . " avec un solde de " . $this->account->amountStart . " € à " . $this->account->getClosingAmount() . " €"
+            "Du " . $startDateFormated . " au " . $endDateFormated .
+            " avec un solde de " . $this->account->amountStart . " € à " . $this->account->getClosingAmount() . " €"
         );
 
         $this->generator->setTabHeader(
-            "Date",
-            "Tiers",
-            "Remarque",
-            "Débit",
-            "Crédit",
-            "Solde",
+            [
+                "Date",
+                "Tiers",
+                "Remarque",
+                "Débit",
+                "Crédit",
+                "Solde",
+            ]
         );
 
         foreach ($this->account->transactions as $transaction) {
@@ -91,23 +97,25 @@ class HtmlGenerator implements ViewGenerator
 
             $this->generator->addTabLine(
                 [
-                    "cssClass" => "date",
-                    "data" => $transaction->date->format("d/m/Y"),
-                ],
-                [
-                    "cssClass" => "recipient",
-                    "data" => ucwords($transaction->recipient),
-                ],
-                [
-                    "cssClass" => "note",
-                    "data" => ucwords($transaction->note),
-                ],
-                $debit,
-                $credit,
-                [
-                    "cssClass" => "balance",
-                    "data" => number_format($transaction->getBalance(), 2, ',', ' '),
-                ],
+                    [
+                        "cssClass" => "date",
+                        "data" => $transaction->date->format("d/m/Y"),
+                    ],
+                    [
+                        "cssClass" => "recipient",
+                        "data" => ucwords($transaction->recipient),
+                    ],
+                    [
+                        "cssClass" => "note",
+                        "data" => ucwords($transaction->note),
+                    ],
+                    $debit,
+                    $credit,
+                    [
+                        "cssClass" => "balance",
+                        "data" => number_format($transaction->getBalance(), 2, ',', ' '),
+                    ],
+                ]
             );
         };
 
