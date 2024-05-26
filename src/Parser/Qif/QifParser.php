@@ -5,6 +5,7 @@ namespace Akipe\Kif\Parser\Qif;
 use Akipe\Kif\Parser\Parser;
 use Akipe\Kif\Entity\Account;
 use Akipe\Kif\Entity\Transaction;
+use Akipe\Kif\Service\TransactionSorter;
 use Akipe\Kif\Parser\Qif\Node\QifOpening;
 use Akipe\Kif\Parser\Qif\NodeParser\QifNodeParser;
 use Akipe\Kif\Parser\Qif\Node\QifAccountInformation;
@@ -39,6 +40,7 @@ class QifParser implements Parser
      */
     private function getTransactions(): array
     {
+        /** @var Transaction[] */
         $transactions = [];
 
         // Parcourir toutes les transactions
@@ -52,25 +54,9 @@ class QifParser implements Parser
                 ->parse();
         }
 
-        $this->sortTransactionsOldestToLatest($transactions);
+        TransactionSorter::oldestToLatest($transactions);
 
         return $transactions;
-    }
-
-    /**
-     *
-     * @param Transaction[] $transactions
-     * @return void
-     */
-    private function sortTransactionsOldestToLatest(array &$transactions): void
-    {
-        uasort(
-            $transactions,
-            fn ($previousTransaction, $nextTransaction)
-                => $previousTransaction->date <=> $nextTransaction->date
-        );
-
-        $transactions = array_values($transactions);
     }
 
     private function getOpeningAccountNodeIndex(): int

@@ -2,7 +2,6 @@
 
 namespace Akipe\Kif\Parser\Grisbi\NodeParser;
 
-use DateTimeImmutable;
 use DateTimeInterface;
 use Akipe\Kif\Parser\Grisbi\Node\GrisbiTransaction;
 
@@ -38,7 +37,7 @@ class GrisbiTransactionParser extends GrisbiNodeParser
     public const ATTRIBUTE_BANK_REFERENCES = 'Ba';
     public const ATTRIBUTE_CONTRACT_TRANSACTION_NUMBER = 'Trt';
     public const ATTRIBUTE_MOTHER_TRANSACTION_NUMBER = 'Mo';
-    public const DATE_FORMAT = 'd/m/Y';
+    public const DATE_FORMAT = 'm/d/Y';
 
     protected function getNodeName(): string
     {
@@ -53,6 +52,7 @@ class GrisbiTransactionParser extends GrisbiNodeParser
             $this->parseAccountId(),
             $this->parseAmount(),
             $this->parsePartyId(),
+            $this->parseCategoryId(),
             $this->parseNotes(),
         );
     }
@@ -80,6 +80,11 @@ class GrisbiTransactionParser extends GrisbiNodeParser
     private function parsePartyId(): int
     {
         return $this->parseIntAttribute(self::ATTRIBUTE_PARTY_ID);
+    }
+
+    private function parseCategoryId(): string
+    {
+        return $this->parseAttribute(self::ATTRIBUTE_CATEGORY_ID);
     }
 
     private function parseNotes(): string

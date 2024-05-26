@@ -1,0 +1,331 @@
+
+            <!doctype html>
+                <html>
+                    <head>
+                        <style>
+                        .releve-compte-tableau {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 1rem;
+}
+
+.releve-compte-tableau thead {
+    font-size: 0.8rem;
+}
+
+.releve-compte-tableau tr {
+    border-bottom: 1px solid rgb(192, 192, 192);
+}
+
+.releve-compte-tableau-contenu th {
+    font-weight: normal;
+    padding: 1px 3px;
+
+    font-size: 0.7rem;
+}
+
+.releve-compte-tableau-contenu tr {
+    color: black !important;
+    print-color-adjust: exact;
+}
+
+/* Differences tab lines odd and even
+
+.releve-compte-tableau-contenu tr:nth-child(odd) {
+    color: black !important;
+    print-color-adjust: exact;
+}
+
+.releve-compte-tableau-contenu tr:nth-child(even) {
+    color: rgb(110, 110, 110) !important;
+    print-color-adjust: exact;
+}
+
+*/
+
+.releve-compte-tableau .note, .releve-compte-tableau .recipient, .releve-compte-tableau .category, .opening-note, .closing-note {
+    text-align: left;
+}
+
+.releve-compte-tableau .debit, .releve-compte-tableau .credit, .releve-compte-tableau .balance, .title-debit, .title-credit, .title-balance, .opening-balance, .closing-balance {
+    text-align: right;
+}
+
+.releve-compte-titre {
+    font-size: 1.2rem;
+}
+
+.releve-compte-information {
+    font-size: 0.8rem;
+}
+
+.opening-note, .closing-note, .opening-balance, .closing-balance {
+    font-weight: bold !important;
+}
+
+.description-important {
+    font-weight: bold;
+}
+
+.opening-date, .closing-date {
+    font-weight: bold !important;
+}
+
+                        </style>
+                    </head>
+                <body>
+                    <h1 class="releve-compte-titre">Relevé de "Caisse" - Club Pétanque Orsay</h1>
+                    <p class="releve-compte-information">Du <span class="description-important">lundi 15 janvier 2024</span> au <span class="description-important">vendredi 26 avril 2024</span> avec un solde initial à <span class="description-important">0 €</span> et un solde final à <span class="description-important">80.47 €</span></p>
+                    <table class="releve-compte-tableau">
+                    <thead class="releve-compte-tableau-titre">
+                        <tr>
+<th class="title-date">Date</th>
+<th class="title-recipient">Tiers</th>
+<th class="title-note">Remarque</th>
+<th class="title-debit">Débit</th>
+<th class="title-credit">Crédit</th>
+<th class="title-balance">Solde</th>
+</tr>
+
+                    </thead>
+                    <tbody class="releve-compte-tableau-contenu">
+                        <tr>
+<th class="opening-date">15/01/2024</th>
+<th class="opening-note">SOLDE INITIAL</th>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+<th class="opening-balance">0,00</th>
+</tr>
+<tr>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+</tr>
+<tr>
+<th class="date">15/01/2024</th>
+<th class="recipient">Jean</th>
+<th class="note">Cotisation</th>
+<th class="debit"></th>
+<th class="credit">20,00</th>
+<th class="balance">20,00</th>
+</tr>
+<tr>
+<th class="date">15/01/2024</th>
+<th class="recipient">Eric</th>
+<th class="note">Cotisation</th>
+<th class="debit"></th>
+<th class="credit">20,00</th>
+<th class="balance">40,00</th>
+</tr>
+<tr>
+<th class="date">15/01/2024</th>
+<th class="recipient">Julien</th>
+<th class="note">Cotisation</th>
+<th class="debit"></th>
+<th class="credit">20,00</th>
+<th class="balance">60,00</th>
+</tr>
+<tr>
+<th class="date">15/01/2024</th>
+<th class="recipient">Mathias</th>
+<th class="note">Cotisation</th>
+<th class="debit"></th>
+<th class="credit">20,00</th>
+<th class="balance">80,00</th>
+</tr>
+<tr>
+<th class="date">15/01/2024</th>
+<th class="recipient">David</th>
+<th class="note">Cotisation</th>
+<th class="debit"></th>
+<th class="credit">50,00</th>
+<th class="balance">130,00</th>
+</tr>
+<tr>
+<th class="date">18/01/2024</th>
+<th class="recipient">Franck</th>
+<th class="note">Remboursement</th>
+<th class="debit">-90,00</th>
+<th class="credit"></th>
+<th class="balance">40,00</th>
+</tr>
+<tr>
+<th class="date">28/03/2024</th>
+<th class="recipient">VERSEMENT CAISSE</th>
+<th class="note">Espece</th>
+<th class="debit"></th>
+<th class="credit">100,00</th>
+<th class="balance">140,00</th>
+</tr>
+<tr>
+<th class="date">28/03/2024</th>
+<th class="recipient">LECLERC</th>
+<th class="note">Boisson</th>
+<th class="debit">-87,67</th>
+<th class="credit"></th>
+<th class="balance">52,33</th>
+</tr>
+<tr>
+<th class="date">02/04/2024</th>
+<th class="recipient">VERSEMENT CAISSE</th>
+<th class="note">Espece</th>
+<th class="debit"></th>
+<th class="credit">30,00</th>
+<th class="balance">82,33</th>
+</tr>
+<tr>
+<th class="date">02/04/2024</th>
+<th class="recipient">LECLERC</th>
+<th class="note">Boisson</th>
+<th class="debit">-24,96</th>
+<th class="credit"></th>
+<th class="balance">57,37</th>
+</tr>
+<tr>
+<th class="date">03/04/2024</th>
+<th class="recipient">VERSEMENT CAISSE</th>
+<th class="note">Espece</th>
+<th class="debit"></th>
+<th class="credit">80,00</th>
+<th class="balance">137,37</th>
+</tr>
+<tr>
+<th class="date">03/04/2024</th>
+<th class="recipient">AUCHAN</th>
+<th class="note">Boisson</th>
+<th class="debit">-74,44</th>
+<th class="credit"></th>
+<th class="balance">62,93</th>
+</tr>
+<tr>
+<th class="date">10/04/2024</th>
+<th class="recipient">Franck</th>
+<th class="note">Remboursement</th>
+<th class="debit">-31,70</th>
+<th class="credit"></th>
+<th class="balance">31,23</th>
+</tr>
+<tr>
+<th class="date">10/04/2024</th>
+<th class="recipient">Franck</th>
+<th class="note">Remboursement</th>
+<th class="debit">-15,36</th>
+<th class="credit"></th>
+<th class="balance">15,87</th>
+</tr>
+<tr>
+<th class="date">13/04/2024</th>
+<th class="recipient">VERSEMENT CAISSE</th>
+<th class="note">Espece</th>
+<th class="debit"></th>
+<th class="credit">60,00</th>
+<th class="balance">75,87</th>
+</tr>
+<tr>
+<th class="date">13/04/2024</th>
+<th class="recipient">AUCHAN</th>
+<th class="note">Boisson</th>
+<th class="debit">-43,08</th>
+<th class="credit"></th>
+<th class="balance">32,79</th>
+</tr>
+<tr>
+<th class="date">17/04/2024</th>
+<th class="recipient">VERSEMENT CAISSE</th>
+<th class="note">Espece</th>
+<th class="debit"></th>
+<th class="credit">40,00</th>
+<th class="balance">72,79</th>
+</tr>
+<tr>
+<th class="date">17/04/2024</th>
+<th class="recipient">LECLERC</th>
+<th class="note"></th>
+<th class="debit">-30,50</th>
+<th class="credit"></th>
+<th class="balance">42,29</th>
+</tr>
+<tr>
+<th class="date">20/04/2024</th>
+<th class="recipient">VERSEMENT CAISSE</th>
+<th class="note">Espece</th>
+<th class="debit"></th>
+<th class="credit">70,00</th>
+<th class="balance">112,29</th>
+</tr>
+<tr>
+<th class="date">20/04/2024</th>
+<th class="recipient">LECLERC</th>
+<th class="note">Boisson</th>
+<th class="debit">-61,00</th>
+<th class="credit"></th>
+<th class="balance">51,29</th>
+</tr>
+<tr>
+<th class="date">23/04/2024</th>
+<th class="recipient">VERSEMENT CAISSE</th>
+<th class="note">Espece</th>
+<th class="debit"></th>
+<th class="credit">30,00</th>
+<th class="balance">81,29</th>
+</tr>
+<tr>
+<th class="date">23/04/2024</th>
+<th class="recipient">AUCHAN</th>
+<th class="note">Boisson</th>
+<th class="debit">-20,90</th>
+<th class="credit"></th>
+<th class="balance">60,39</th>
+</tr>
+<tr>
+<th class="date">25/04/2024</th>
+<th class="recipient">VERSEMENT CAISSE</th>
+<th class="note">Espece</th>
+<th class="debit"></th>
+<th class="credit">50,00</th>
+<th class="balance">110,39</th>
+</tr>
+<tr>
+<th class="date">25/04/2024</th>
+<th class="recipient">LECLERC</th>
+<th class="note">Boisson</th>
+<th class="debit">-49,92</th>
+<th class="credit"></th>
+<th class="balance">60,47</th>
+</tr>
+<tr>
+<th class="date">26/04/2024</th>
+<th class="recipient">LOU</th>
+<th class="note">Cotisation</th>
+<th class="debit"></th>
+<th class="credit">20,00</th>
+<th class="balance">80,47</th>
+</tr>
+<tr>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+</tr>
+<tr>
+<th class="closing-date">26/04/2024</th>
+<th class="closing-note">SOLDE FINAL</th>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+<th class="closing-balance">80,47</th>
+</tr>
+
+                    </tbody>
+                    </table>
+                </body>
+            </html>
+        

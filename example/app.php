@@ -38,7 +38,7 @@ if (empty($grisbiXml)) {
 $kif = new Kif();
 
 $htmlContent = $kif
-    ->parse(new GrisbiParser($grisbiXml, "Compte principal"))
+    ->parse(new GrisbiParser($grisbiXml, "Caisse"))
     ->generateView(new HtmlGenerator());
 
 file_put_contents(__DIR__ . "/output_test_grisbi.html", $htmlContent);

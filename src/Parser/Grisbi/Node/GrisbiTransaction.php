@@ -12,6 +12,7 @@ class GrisbiTransaction
         public readonly int $accountId,
         public readonly float $amount,
         public readonly int $partyId,
+        public readonly string $categoryId,
         public readonly string $notes,
     ) {
     }

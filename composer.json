@@ -20,7 +20,9 @@
     "phpro/grumphp-shim": "^2.5",
     "phpstan/phpstan": "^1.10",
     "phpunit/phpunit": "^9",
-    "squizlabs/php_codesniffer": "*"
+    "squizlabs/php_codesniffer": "*",
+    "friendsofphp/php-cs-fixer": "^3.57",
+    "brianium/paratest": "^6.11"
   },
   "autoload": {
     "psr-4": {
@@ -36,12 +38,13 @@
     }
   },
   "scripts": {
-    "check-all": "vendor/bin/grumphp run",
+    "check-all": "composer check-standard; composer check-static-analyze; composer test",
+    "check-commit": "vendor/bin/grumphp run",
     "check-standard": "vendor/bin/phpcs",
     "check-static-analyze": "vendor/bin/phpstan",
     "example": "php example/app.php",
     "fix-composer": "composer normalize --no-update-lock",
     "fix-standard": "vendor/bin/phpcbf",
-    "test": "vendor/bin/phpunit tests"
+    "test": "vendor/bin/paratest tests"
   }
 }

@@ -2,16 +2,18 @@
 
 namespace Akipe\Kif\Parser\Grisbi;
 
+use Exception;
 use SimpleXMLElement;
 use Akipe\Kif\Parser\Parser;
 use Akipe\Kif\Entity\Account;
 use Akipe\Kif\Entity\Transaction;
+use Akipe\Kif\Service\TransactionSorter;
 use Akipe\Kif\Parser\Grisbi\Node\GrisbiRoot;
 use Akipe\Kif\Parser\Grisbi\Node\GrisbiParty;
 use Akipe\Kif\Parser\Grisbi\Node\GrisbiAccount;
+use Akipe\Kif\Parser\Grisbi\Node\GrisbiCategory;
 use Akipe\Kif\Parser\Grisbi\Node\GrisbiTransaction;
 use Akipe\Kif\Parser\Grisbi\NodeParser\GrisbiRootParser;
-use Exception;
 
 class GrisbiParser implements Parser
 {
@@ -40,6 +42,22 @@ class GrisbiParser implements Parser
             throw new Exception("Can't find account named " . $this->accountNameToFetch);
         }
 
+        $transactions = $this->getTransactions($accountNode, $rootNode);
+
+        return new Account(
+            $accountNode->name,
+            $accountNode->initialBalance,
+            $transactions
+        );
+    }
+
+    /**
+     * Get all transactions
+     *
+     * @return Transaction[]
+     */
+    private function getTransactions(GrisbiAccount $accountNode, GrisbiRoot $rootNode): array
+    {
         $transactionsNodes = $this->getTransactionsLinkedToAccount($accountNode, $rootNode->transactions);
 
         /** @var Transaction[] */
@@ -47,21 +65,20 @@ class GrisbiParser implements Parser
 
         foreach ($transactionsNodes as $transactionNode) {
             $partyName = $this->getPartyLinkedToTransaction($transactionNode, $rootNode->parties)->name ?? "";
+            $categoryName = $this->getCategoryLinkedToTransaction($transactionNode, $rootNode->categories)->name ?? "";
 
             $transactions[] = new Transaction(
                 $transactionNode->date,
-                $transactionNode->notes,
+                $categoryName,
                 $transactionNode->amount,
                 $partyName,
                 "category",
             );
         }
 
-        return new Account(
-            $accountNode->name,
-            $accountNode->initialBalance,
-            $transactions
-        );
+        TransactionSorter::oldestToLatest($transactions);
+
+        return $transactions;
     }
 
     private function getSpecificAccount(string $accountName, GrisbiRoot $nodeRoot): ?GrisbiAccount
@@ -105,6 +122,23 @@ class GrisbiParser implements Parser
         foreach ($parties as $party) {
             if ($party->id == $transaction->partyId) {
                 return $party;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     *
+     * @param GrisbiTransaction $transaction
+     * @param GrisbiCategory[] $categories
+     * @return null|GrisbiCategory
+     */
+    private function getCategoryLinkedToTransaction(GrisbiTransaction $transaction, array $categories): ?GrisbiCategory
+    {
+        foreach ($categories as $category) {
+            if ($category->id == $transaction->categoryId) {
+                return $category;
             }
         }
 

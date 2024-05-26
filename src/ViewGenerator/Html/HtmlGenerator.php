@@ -61,18 +61,102 @@ class HtmlGenerator implements ViewGenerator
             "Relevé de \"" . $this->account->name . "\" - " . $this->configuration->getStructureName()
         );
         $this->generator->setInformation(
-            "Du " . $startDateFormatted . " au " . $endDateFormatted .
-            " avec un solde de " . $this->account->amountStart . " € à " . $this->account->getClosingAmount() . " €"
+            'Du <span class="description-important">' .
+            $startDateFormatted .
+            '</span> au <span class="description-important">' .
+            $endDateFormatted .
+            '</span> avec un solde initial à <span class="description-important">' .
+            $this->account->amountStart .
+            ' €</span> ' .
+            'et un solde final à <span class="description-important">' .
+            $this->account->getClosingAmount() .
+            ' €</span>'
         );
 
         $this->generator->setTabHeader(
             [
-                "Date",
-                "Tiers",
-                "Remarque",
-                "Débit",
-                "Crédit",
-                "Solde",
+                [
+                    "cssClass" => "title-date",
+                    "data" => "Date",
+                ],
+                [
+                    "cssClass" => "title-recipient",
+                    "data" => "Tiers",
+                ],
+                [
+                    "cssClass" => "title-note",
+                    "data" => "Remarque",
+                ],
+                [
+                    "cssClass" => "title-debit",
+                    "data" => "Débit",
+                ],
+                [
+                    "cssClass" => "title-credit",
+                    "data" => "Crédit",
+                ],
+                [
+                    "cssClass" => "title-balance",
+                    "data" => "Solde",
+                ],
+            ]
+        );
+
+        $this->generator->addTabLine(
+            [
+                [
+                    "cssClass" => "opening-date",
+                    "data" => $this->account->getFirstTransactionDate()->format("d/m/Y"),
+                ],
+                [
+                    "cssClass" => "opening-note",
+                    "data" => mb_strtoupper("Solde initial"),
+                ],
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
+                [
+                    "cssClass" => "opening-balance",
+                    "data" => number_format($this->account->getOpeningAmount(), 2, ',', ' '),
+                ],
+            ]
+        );
+
+        $this->generator->addTabLine(
+            [
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
             ]
         );
 
@@ -120,6 +204,64 @@ class HtmlGenerator implements ViewGenerator
                 ]
             );
         };
+
+        $this->generator->addTabLine(
+            [
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
+            ]
+        );
+
+        $this->generator->addTabLine(
+            [
+                [
+                    "cssClass" => "closing-date",
+                    "data" => $this->account->getLastTransactionDate()->format("d/m/Y"),
+                ],
+                [
+                    "cssClass" => "closing-note",
+                    "data" => mb_strtoupper("Solde final"),
+                ],
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
+                [
+                    "cssClass" => "",
+                    "data" => "",
+                ],
+                [
+                    "cssClass" => "closing-balance",
+                    "data" => number_format($this->account->getClosingAmount(), 2, ',', ' '),
+                ],
+            ]
+        );
 
         return $this->generator->generateTabPageTemplate();
     }

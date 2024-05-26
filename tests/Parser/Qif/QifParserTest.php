@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Akipe\Kif\Test\Qif\QifParserTest;
+namespace Akipe\Kif\Test\Qif;
 
 use Akipe\Kif\Entity\Account;
 use PHPUnit\Framework\TestCase;
@@ -56,28 +56,40 @@ final class QifParserTest extends TestCase
             0.0,
             [
                 new Transaction(
-                    DateTimeFormatGeneration::get("d/m/Y", "22/01/2011"),
+                    DateTimeFormatGeneration::get(
+                        "d/m/Y",
+                        "22/01/2011"
+                    ),
                     "p",
                     200.00,
                     "virement",
                     "",
                 ),
                 new Transaction(
-                    DateTimeFormatGeneration::get("d/m/Y", "27/09/2011"),
+                    DateTimeFormatGeneration::get(
+                        "d/m/Y",
+                        "27/09/2011"
+                    ),
                     "p",
                     -29.00,
                     "caffe",
                     "",
                 ),
                 new Transaction(
-                    DateTimeFormatGeneration::get("d/m/Y", "30/09/2011"),
+                    DateTimeFormatGeneration::get(
+                        "d/m/Y",
+                        "30/09/2011"
+                    ),
                     "p",
                     -27.40,
                     "sweety",
                     "",
                 ),
                 new Transaction(
-                    DateTimeFormatGeneration::get("d/m/Y", "03/10/2011"),
+                    DateTimeFormatGeneration::get(
+                        "d/m/Y",
+                        "03/10/2011"
+                    ),
                     "p",
                     -60.10,
                     "pharmacie",

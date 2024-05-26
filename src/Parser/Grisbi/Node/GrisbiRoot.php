@@ -6,6 +6,7 @@ use Akipe\Kif\Parser\Grisbi\Node\GrisbiParty;
 use Akipe\Kif\Parser\Grisbi\Node\GrisbiAccount;
 use Akipe\Kif\Parser\Grisbi\Node\GrisbiPaymentType;
 use Akipe\Kif\Parser\Grisbi\Node\GrisbiTransaction;
+use Akipe\Kif\Parser\Grisbi\Node\GrisbiCategory;
 
 class GrisbiRoot
 {
@@ -14,6 +15,7 @@ class GrisbiRoot
      * @param GrisbiPaymentType[] $payments
      * @param GrisbiTransaction[] $transactions
      * @param GrisbiParty[] $parties
+     * @param GrisbiCategory[] $categories
      * @return void
      */
     public function __construct(
@@ -21,6 +23,7 @@ class GrisbiRoot
         public readonly array $payments,
         public readonly array $transactions,
         public readonly array $parties,
+        public readonly array $categories,
     ) {
     }
 

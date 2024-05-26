@@ -6,8 +6,10 @@ use SimpleXMLElement;
 use Akipe\Kif\Parser\Grisbi\Node\GrisbiRoot;
 use Akipe\Kif\Parser\Grisbi\Node\GrisbiParty;
 use Akipe\Kif\Parser\Grisbi\Node\GrisbiAccount;
+use Akipe\Kif\Parser\Grisbi\Node\GrisbiCategory;
 use Akipe\Kif\Parser\Grisbi\Node\GrisbiPaymentType;
 use Akipe\Kif\Parser\Grisbi\Node\GrisbiTransaction;
+use Akipe\Kif\Parser\Grisbi\NodeParser\GrisbiCategoryParser;
 
 class GrisbiRootParser extends GrisbiNodeParser
 {
@@ -21,6 +23,8 @@ class GrisbiRootParser extends GrisbiNodeParser
     private array $transactions;
     /** @var GrisbiParty[] */
     private array $parties;
+    /** @var GrisbiCategory[] */
+    private array $categories;
 
     public function __construct(SimpleXMLElement $node)
     {
@@ -30,11 +34,13 @@ class GrisbiRootParser extends GrisbiNodeParser
         $this->payments = [];
         $this->transactions = [];
         $this->parties = [];
+        $this->categories = [];
 
         $this->parseAccounts();
         $this->parsePayments();
         $this->parseTransactions();
         $this->parseParties();
+        $this->parseCategories();
     }
 
     protected function getNodeName(): string
@@ -49,6 +55,7 @@ class GrisbiRootParser extends GrisbiNodeParser
             $this->payments,
             $this->transactions,
             $this->parties,
+            $this->categories,
         );
     }
 
@@ -68,8 +75,8 @@ class GrisbiRootParser extends GrisbiNodeParser
     {
         $paymentsNodes = $this->getChildNodes(GrisbiPaymentTypeParser::NODE_NAME);
 
-        foreach ($paymentsNodes as $accountNode) {
-            $payment = (new GrisbiPaymentTypeParser($accountNode))->parse();
+        foreach ($paymentsNodes as $paymentNode) {
+            $payment = (new GrisbiPaymentTypeParser($paymentNode))->parse();
             $this->payments[$payment->id] = $payment;
         }
 
@@ -80,8 +87,8 @@ class GrisbiRootParser extends GrisbiNodeParser
     {
         $transactionsNodes = $this->getChildNodes(GrisbiTransactionParser::NODE_NAME);
 
-        foreach ($transactionsNodes as $accountNode) {
-            $transaction = (new GrisbiTransactionParser($accountNode))->parse();
+        foreach ($transactionsNodes as $transactionNode) {
+            $transaction = (new GrisbiTransactionParser($transactionNode))->parse();
             $this->transactions[$transaction->id] = $transaction;
         }
 
@@ -92,9 +99,21 @@ class GrisbiRootParser extends GrisbiNodeParser
     {
         $partiesNodes = $this->getChildNodes(GrisbiPartyParser::NODE_NAME);
 
-        foreach ($partiesNodes as $accountNode) {
-            $party = (new GrisbiPartyParser($accountNode))->parse();
+        foreach ($partiesNodes as $partyNode) {
+            $party = (new GrisbiPartyParser($partyNode))->parse();
             $this->parties[$party->id] = $party;
+        }
+
+        return $this;
+    }
+
+    public function parseCategories(): self
+    {
+        $categoriesNodes = $this->getChildNodes(GrisbiCategoryParser::NODE_NAME);
+
+        foreach ($categoriesNodes as $categoryNode) {
+            $category = (new GrisbiCategoryParser($categoryNode))->parse();
+            $this->categories[$category->id] = $category;
         }
 
         return $this;
