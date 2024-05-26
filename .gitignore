@@ -1,4 +1,7 @@
+# composer
 /vendor/
-.env
 # phpunit
 .phpunit.result.cache
+
+# App configuration
+.env

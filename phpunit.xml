@@ -9,12 +9,8 @@
   failOnEmptyTestSuite="true"
   beStrictAboutOutputDuringTests="true"
   verbose= "true"
+  bootstrap="vendor/autoload.php"
 >
-    <php>
-        <ini name="error_reporting" value="-1"/>
-        <ini name="display_errors" value="On"/>
-    </php>
-
     <testsuites>
         <testsuite name="Tests">
             <directory>tests/</directory>
@@ -26,4 +22,10 @@
             <directory suffix=".php">src/</directory>
         </include>
     </coverage>
+
+    <php>
+        <ini name="error_reporting" value="-1"/>
+        <ini name="display_errors" value="On"/>
+        <env name="APP_ENV" value="test" />
+    </php>
 </phpunit>

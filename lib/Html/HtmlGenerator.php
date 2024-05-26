@@ -41,7 +41,7 @@ class HtmlGenerator
 
     /**
      *
-     * @param string[] $elements
+     * @param array<array{cssClass: string, data: string}> $elements
      * @return void
      */
     public function setTabHeader(array $elements): void
@@ -49,7 +49,12 @@ class HtmlGenerator
         $this->tabHeader .= "<tr>" . PHP_EOL;
 
         foreach ($elements as $element) {
-            $this->tabHeader .= "<th>" . $element . "</th>" . PHP_EOL;
+            $this->tabHeader .=
+                '<th class="' . $element["cssClass"] . '">' .
+                    $element["data"] .
+                '</th>' .
+                PHP_EOL
+            ;
         }
 
         $this->tabHeader .= "</tr>" . PHP_EOL;

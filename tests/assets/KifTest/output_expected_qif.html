@@ -4,73 +4,110 @@
                     <head>
                         <style>
                         .releve-compte-tableau {
-  width: 100%;
+    width: 100%;
 
-  border-collapse: collapse;
+    border-collapse: collapse;
 
-  font-size: 1rem;
+    font-size: 1rem;
 }
 
 .releve-compte-tableau thead {
-  font-size: 0.8rem;
+    font-size: 0.8rem;
 }
 
 .releve-compte-tableau tr {
-  border-bottom: 1px solid rgb(192, 192, 192);
+    border-bottom: 1px solid rgb(192, 192, 192);
 }
 
 .releve-compte-tableau-contenu th {
-  font-weight: normal;
-  padding: 1px 3px;
+    font-weight: normal;
+    padding: 1px 3px;
 
-  font-size: 0.7rem;
+    font-size: 0.7rem;
 }
 
+.releve-compte-tableau-contenu tr {
+    color: black !important;
+    print-color-adjust: exact;
+}
+
+/* Differences tab lines odd and even
+
 .releve-compte-tableau-contenu tr:nth-child(odd) {
-  color: black !important;;
-  print-color-adjust: exact;
+    color: black !important;
+    print-color-adjust: exact;
 }
 
 .releve-compte-tableau-contenu tr:nth-child(even) {
-  color: rgb(110, 110, 110) !important;;
-  print-color-adjust: exact;
+    color: rgb(110, 110, 110) !important;
+    print-color-adjust: exact;
 }
 
-.releve-compte-tableau .note, .releve-compte-tableau .recipient, .releve-compte-tableau .category {
-  text-align: left;
+*/
+
+.releve-compte-tableau .note, .releve-compte-tableau .recipient, .releve-compte-tableau .category, .opening-note, .closing-note {
+    text-align: left;
 }
 
-.releve-compte-tableau .debit, .releve-compte-tableau .credit, .releve-compte-tableau .balance {
-  text-align: right;
+.releve-compte-tableau .debit, .releve-compte-tableau .credit, .releve-compte-tableau .balance, .title-debit, .title-credit, .title-balance, .opening-balance, .closing-balance {
+    text-align: right;
 }
 
 .releve-compte-titre {
-  font-size: 1.2rem;
+    font-size: 1.2rem;
 }
 
 .releve-compte-information {
-  font-size: 0.8rem;
+    font-size: 0.8rem;
+}
+
+.opening-note, .closing-note, .opening-balance, .closing-balance {
+    font-weight: bold !important;
+}
+
+.description-important {
+    font-weight: bold;
+}
+
+.opening-date, .closing-date {
+    font-weight: bold !important;
 }
 
                         </style>
                     </head>
                 <body>
-                    <h1 class="releve-compte-titre">Relevé de "thomas - banque cc" - ACME</h1>
-                    <p class="releve-compte-information">Du vendredi 31 décembre 2010 au mardi 01 novembre 2011 avec un solde de 0 € à -6030.76 €</p>
+                    <h1 class="releve-compte-titre">Relevé de "thomas - banque cc" - ACME Enterprise TEST</h1>
+                    <p class="releve-compte-information">Du <span class="description-important">vendredi 31 décembre 2010</span> au <span class="description-important">mardi 01 novembre 2011</span> avec un solde initial à <span class="description-important">0 €</span> et un solde final à <span class="description-important">-6030.76 €</span></p>
                     <table class="releve-compte-tableau">
                     <thead class="releve-compte-tableau-titre">
                         <tr>
-<th>Date</th>
-<th>Tiers</th>
-<th>Remarque</th>
-<th>Débit</th>
-<th>Crédit</th>
-<th>Solde</th>
+<th class="title-date">Date</th>
+<th class="title-recipient">Tiers</th>
+<th class="title-note">Remarque</th>
+<th class="title-debit">Débit</th>
+<th class="title-credit">Crédit</th>
+<th class="title-balance">Solde</th>
 </tr>
 
                     </thead>
                     <tbody class="releve-compte-tableau-contenu">
                         <tr>
+<th class="opening-date">31/12/2010</th>
+<th class="opening-note">SOLDE INITIAL</th>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+<th class="opening-balance">0,00</th>
+</tr>
+<tr>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+</tr>
+<tr>
 <th class="date">31/12/2010</th>
 <th class="recipient">Retrait Dab</th>
 <th class="note">P</th>
@@ -501,6 +538,22 @@
 <th class="debit">-150,00</th>
 <th class="credit"></th>
 <th class="balance">-6 030,76</th>
+</tr>
+<tr>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+</tr>
+<tr>
+<th class="closing-date">01/11/2011</th>
+<th class="closing-note">SOLDE FINAL</th>
+<th class=""></th>
+<th class=""></th>
+<th class=""></th>
+<th class="closing-balance">-6 030,76</th>
 </tr>
 
                     </tbody>

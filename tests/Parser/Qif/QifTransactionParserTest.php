@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Akipe\Kif\Test\Qif\QifTransactionParserTest;
+namespace Akipe\Kif\Test\Qif;
 
 use PHPUnit\Framework\TestCase;
 use Akipe\Kif\Entity\Transaction;
@@ -29,9 +29,9 @@ final class QifTransactionParserTest extends TestCase
             "",
         );
 
-        $parser = new QifTransactionParser($input);
-        $transactionParsed = $parser->parse();
+        $transactionParsed = (new QifTransactionParser($input))->parse();
 
+        // $this->assertEquals($transactionExpected, 0);
         $this->assertEquals($transactionExpected, $transactionParsed);
     }
 }

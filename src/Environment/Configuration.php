@@ -7,7 +7,7 @@ use Symfony\Component\Dotenv\Dotenv;
 class Configuration
 {
     public const CONFIGURATION_FILE_PATH = __DIR__ . '/../../.env';
-    public const STRUCTURE_NAME = "KIF_STRUCTURE_NAME";
+    public const PROPERTY_STRUCTURE_NAME = "KIF_STRUCTURE_NAME";
 
     private Dotenv $configLoader;
 
@@ -19,6 +19,6 @@ class Configuration
 
     public function getStructureName(): string
     {
-        return $_ENV[self::STRUCTURE_NAME];
+        return $_ENV[self::PROPERTY_STRUCTURE_NAME];
     }
 }
